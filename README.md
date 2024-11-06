@@ -1,8 +1,8 @@
-# PrivaSphere: A Lightweight, Adaptable, and Powerful Privacy-Preserving Machine Learning Platform
+# PrivSphere: A Lightweight, Adaptable, and Powerful Privacy-Preserving Machine Learning Platform
 
 **Overview**
 
-PrivaSphere is a **lightweight, adaptable,** and **powerful** privacy-preserving machine learning platform designed to enable secure data analysis and modeling without compromising sensitive information. By leveraging advanced privacy-preserving techniques such as homomorphic encryption (HE) and secure multi-party computation (SMPC), PrivaSphere provides a secure environment for various data processing tasks.
+PrivSphere is a **lightweight, adaptable,** and **powerful** privacy-preserving machine learning platform designed to enable secure data analysis and modeling without compromising sensitive information. By leveraging advanced privacy-preserving techniques such as homomorphic encryption (HE) and secure multi-party computation (SMPC), PrivSphere provides a secure environment for various data processing tasks.
 
 **Key Features**
 
@@ -27,7 +27,7 @@ PrivaSphere is a **lightweight, adaptable,** and **powerful** privacy-preserving
 
 **Future Directions**
 
-We will continue to improve PrivaSphere in the following areas:
+We will continue to improve PrivSphere in the following areas:
 
 * **Expand Supported Algorithms:** Support a wider range of machine learning and deep learning algorithms.
 * **Enhance Performance:** Further optimize algorithms to improve computational efficiency.
@@ -41,7 +41,7 @@ We will continue to improve PrivaSphere in the following areas:
 
 **Documentation**
 
-For detailed documentation and tutorials, please visit our official website: [[https://www.privasphere.com](https://www.privasphere.com)]
+For detailed documentation and tutorials, please visit [our official website](https://ist.nwu.edu.cn).
 
 **Contributing**
 
@@ -69,8 +69,8 @@ We welcome your contributions! You can participate in the following ways:
 
 **Additionally, you might consider the following:**
 
-* **Highlighting PrivaSphere's unique advantages:** How does PrivaSphere compare to other similar products?
-* **Providing use cases:** Showcase real-world examples of how PrivaSphere can be used.
+* **Highlighting PrivSphere's unique advantages:** How does PrivSphere compare to other similar products?
+* **Providing use cases:** Showcase real-world examples of how PrivSphere can be used.
 * **Open-source license:** If your project is open-source, clearly state the open-source license used.
 
 By incorporating these improvements, you can create a more comprehensive and informative README.md that effectively communicates the value of your project.
