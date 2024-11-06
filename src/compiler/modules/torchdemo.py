@@ -113,7 +113,7 @@ class MyModel(nn.Module):
         self.norm1 = nn.LayerNorm(hidden_dim)
         self.fc2 = nn.Linear(hidden_dim, hidden_dim)
         self.fc3 = nn.Linear(hidden_dim, output_dim)
-        self.tanh = ReLU()
+        self.relu = ReLU()
 
     def forward(self, x):
         out = self.fc1(x)
@@ -123,7 +123,7 @@ class MyModel(nn.Module):
         out = my_gelu(out)  
         out += residual
         out = self.fc3(out)
-        out = self.tanh(out)  
+        out = self.relu(out)  
         return out
 
 
@@ -136,4 +136,4 @@ dummy_input = torch.randn(1, 10)
 model.eval()
 
 
-torch.onnx.export(model, dummy_input, "model.onnx", verbose=True, input_names=["input"], output_names=["output"])
+torch.onnx.export(model, dummy_input, "modules/model.onnx", verbose=True, input_names=["input"], output_names=["output"])
