@@ -1,9 +1,9 @@
 #ifndef PRIVSPHERE_PROTOCOLS_H__
 #define PRIVSPHERE_PROTOCOLS_H__
 
+#include <cstdint>
 #include <vector>
 using std::vector;
-typedef unsigned long int uint64_t;
 
 class Linear {
 public:
@@ -45,12 +45,8 @@ public:
 };
 
 class LayerNorm {
-protected:
-    unsigned int num_features;
 public:
-    LayerNorm() : num_features(1) {}
-    LayerNorm(unsigned int _num_features) : num_features(_num_features) {}
-
+    LayerNorm() {}
     void forward(const vector<vector<vector<uint64_t>>> &input, vector<vector<vector<uint64_t>>> &output) {}
 };
 

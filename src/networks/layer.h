@@ -1,9 +1,9 @@
 #ifndef PRIVSPHERE_LAYER_H__
 #define PRIVSPHERE_LAYER_H__
 
+#include <cstdint>
 #include <vector>
 using std::vector;
-typedef unsigned long int uint64_t;
 
 class Layer {
 public:
