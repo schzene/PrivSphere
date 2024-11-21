@@ -1,4 +1,4 @@
-#include "rest-net-50-config.h"
+#include "resnet50-config.h"
 
 class RestNet50Block {
     Convolution *conv1;

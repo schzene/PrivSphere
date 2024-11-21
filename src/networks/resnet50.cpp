@@ -1,4 +1,4 @@
-#include "rest-net-50.h"
+#include "resnet50.h"
 
 RestNet50Block::RestNet50Block(unsigned int in_channels, unsigned int out_channels) {
     conv1 = new Convolution(in_channels, out_channels, 1, 1);
