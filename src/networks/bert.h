@@ -17,6 +17,16 @@ public:
     void forward(const vector<vector<vector<uint64_t>>> &input, vector<vector<vector<uint64_t>>> &output);
 };
 
+class MultiHeadAttention : public Layer {
+    const int n_heads = 12;
+    Attention **attns;
+public:
+    MultiHeadAttention();
+    ~MultiHeadAttention();
+
+    void forward(const vector<vector<vector<uint64_t>>> &input, vector<vector<vector<uint64_t>>> &output);
+};
+
 class FFN : public Layer {
     vector<vector<vector<uint64_t>>> w1, w2;
     vector<vector<uint64_t>> b1, b2;
@@ -31,7 +41,7 @@ public:
 };
 
 class Encoder : public Layer {
-    Attention *attention;
+    MultiHeadAttention *attention;
     LayerNorm *ln1;
     FFN *ffn;
     LayerNorm *ln2;

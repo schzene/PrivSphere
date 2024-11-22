@@ -1,14 +1,14 @@
-#include "resnet50.h"
+#include "resnet.h"
 
 RestNet50Block::RestNet50Block(unsigned int in_channels, unsigned int out_channels) {
     conv1 = new Convolution(in_channels, out_channels, 1, 1);
-    bn1 = new LayerNorm(out_channels);
+    bn1 = new LayerNorm();
     relu1 = new ReLU();
     conv2 = new Convolution(out_channels, out_channels, 3, 1, 1);
-    bn2 = new LayerNorm(out_channels);
+    bn2 = new LayerNorm();
     relu2 = new ReLU();
     conv3 = new Convolution(out_channels, out_channels * 4, 1, 1);
-    bn3 = new LayerNorm(out_channels * 4);
+    bn3 = new LayerNorm();
 }
 
 RestNet50Block::~RestNet50Block() {

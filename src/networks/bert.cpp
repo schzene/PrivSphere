@@ -1,6 +1,7 @@
 #include "bert.h"
 #include "layer.h"
 #include <cmath>
+#include <cstdint>
 
 Attention::Attention() {
     linear = new Linear();
@@ -19,7 +20,7 @@ void Attention::forward(const vector<vector<vector<uint64_t>>> &input, vector<ve
     vector<vector<vector<uint64_t>>> Q(num_features, vector<vector<uint64_t>>(batch_size, vector<uint64_t>(dk)));
     vector<vector<vector<uint64_t>>> K(num_features, vector<vector<uint64_t>>(batch_size, vector<uint64_t>(dk)));
     vector<vector<vector<uint64_t>>> V(num_features, vector<vector<uint64_t>>(batch_size, vector<uint64_t>(dk)));
-    vector<vector<vector<uint64_t>>> Vt(num_features, vector<vector<uint64_t>>(dk, vector<uint64_t>(batch_size)));
+    vector<vector<vector<uint64_t>>> Kt(num_features, vector<vector<uint64_t>>(dk, vector<uint64_t>(batch_size)));
 
     linear->forward(input, wq, Q);
     linear->forward(input, wk, K);
@@ -37,13 +38,13 @@ void Attention::forward(const vector<vector<vector<uint64_t>>> &input, vector<ve
     for (unsigned i = 0; i < num_features; i++) {
         for (unsigned j = 0; j < batch_size; j++) {
             for (unsigned k = 0; k < dk; k++) {
-                Vt[i][k][j] = V[i][j][k];
+                Kt[i][k][j] = K[i][j][k];
             }
         }
     }
 
     vector<vector<vector<uint64_t>>> QK(num_features, vector<vector<uint64_t>>(batch_size, vector<uint64_t>(batch_size)));
-    linear->forward(Q, K, QK);
+    linear->forward(Q, Kt, QK);
     for (unsigned i = 0; i < num_features; i++) {
         for (unsigned j = 0; j < batch_size; j++) {
             for (unsigned k = 0; k < batch_size; k++) {
@@ -53,7 +54,38 @@ void Attention::forward(const vector<vector<vector<uint64_t>>> &input, vector<ve
     }
 
     softmax->forward(QK, QK);
-    linear->forward(QK, Vt, output);
+    linear->forward(QK, V, output);
+}
+
+MultiHeadAttention::MultiHeadAttention() {
+    attns = new Attention *[n_heads];
+    for (int i = 0; i < n_heads; i++) {
+        attns[i] = new Attention();
+    }
+}
+
+MultiHeadAttention::~MultiHeadAttention() {
+    for (int i = 0; i < n_heads; i++) {
+        delete attns[i];
+    }
+    delete[] attns;
+}
+
+void MultiHeadAttention::forward(const vector<vector<vector<uint64_t>>> &input, vector<vector<vector<uint64_t>>> &output) {
+    const unsigned int num_features = input.size(), batch_size = input[0].size(), seq_len = input[0][0].size(), dk = seq_len / n_heads;
+    vector<vector<vector<uint64_t>>> attns_output(n_heads, vector<vector<uint64_t>>(batch_size, vector<uint64_t>(seq_len)));
+
+    for (int h = 0; h < n_heads; h++) {
+        vector<vector<vector<uint64_t>>> output_h(num_features, vector<vector<uint64_t>>(batch_size, vector<uint64_t>(seq_len)));
+        attns[h]->forward(input, output_h);
+        for (unsigned int f = 0; f < num_features;f++) {
+            for (unsigned int i = 0; i < batch_size; i++) {
+                for (unsigned int j = 0; j < dk; j++) {
+                    attns_output[f][i * seq_len + h * dk + j] = output_h[f][i * dk + j];
+                }
+            }
+        }
+    }
 }
 
 FFN::FFN() {
@@ -93,7 +125,7 @@ void FFN::forward(const vector<vector<vector<uint64_t>>> &input, vector<vector<v
 }
 
 Encoder::Encoder() {
-    attention = new Attention();
+    attention = new MultiHeadAttention();
     ln1 = new LayerNorm();
     ffn = new FFN();
     ln2 = new LayerNorm();

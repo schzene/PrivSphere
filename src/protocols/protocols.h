@@ -50,6 +50,12 @@ public:
     void forward(const vector<vector<vector<uint64_t>>> &input, vector<vector<vector<uint64_t>>> &output) {}
 };
 
+class BatchNorm {
+public:
+    BatchNorm() {}
+    void forward(const vector<vector<vector<uint64_t>>> &input, vector<vector<vector<uint64_t>>> &output) {}
+};
+
 
 class ReLU {
 public:
