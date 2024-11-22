@@ -1,3 +1,4 @@
+#pragma once
 #ifndef PRIVSPHERE_PROTOCOLS_H__
 #define PRIVSPHERE_PROTOCOLS_H__
 

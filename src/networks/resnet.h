@@ -1,6 +1,10 @@
+#pragma once
+#ifndef PRIVSPHERE_RESNET_H__
+#define PRIVSPHERE_RESNET_H__
+
 #include "resnet-config.h"
 
-class RestNet50Block {
+class ResNetBlock {
     Convolution *conv1;
     LayerNorm *bn1;
     ReLU *relu1;
@@ -11,11 +15,13 @@ class RestNet50Block {
     LayerNorm *bn3;
 
 public:
-    RestNet50Block(unsigned int in_channels, unsigned int out_channels);
-    ~RestNet50Block();
+    ResNetBlock(unsigned int in_channels, unsigned int out_channels);
+    ~ResNetBlock();
     void forward(const vector<vector<vector<uint64_t>>> &input, vector<vector<vector<uint64_t>>> &output);
 };
 
-class RestNet50 {
+class ResNet {
 
 };
+
+#endif

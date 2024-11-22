@@ -1,6 +1,6 @@
 add_library(ps-network
     bert.cpp
-    resnet50.cpp
+    resnet.cpp
 )
  
  

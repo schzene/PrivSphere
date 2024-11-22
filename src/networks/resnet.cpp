@@ -1,6 +1,6 @@
 #include "resnet.h"
 
-RestNet50Block::RestNet50Block(unsigned int in_channels, unsigned int out_channels) {
+ResNetBlock::ResNetBlock(unsigned int in_channels, unsigned int out_channels) {
     conv1 = new Convolution(in_channels, out_channels, 1, 1);
     bn1 = new LayerNorm();
     relu1 = new ReLU();
@@ -11,7 +11,7 @@ RestNet50Block::RestNet50Block(unsigned int in_channels, unsigned int out_channe
     bn3 = new LayerNorm();
 }
 
-RestNet50Block::~RestNet50Block() {
+ResNetBlock::~ResNetBlock() {
     delete conv1;
     delete bn1;
     delete relu1;
@@ -22,7 +22,7 @@ RestNet50Block::~RestNet50Block() {
     delete bn3;
 }
 
-void RestNet50Block::forward(const vector<vector<vector<uint64_t>>> &input, vector<vector<vector<uint64_t>>> &output) {
+void ResNetBlock::forward(const vector<vector<vector<uint64_t>>> &input, vector<vector<vector<uint64_t>>> &output) {
     conv1->forward(input, output);
     bn1->forward(output, output);
     relu1->forward(output, output);

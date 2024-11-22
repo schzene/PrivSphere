@@ -1,8 +1,22 @@
+#pragma once
 #ifndef PRIVSPHERE_BERT_H__
 #define PRIVSPHERE_BERT_H__
 
+#include <string>
 #include "layer.h"
 #include "bert-config.h"
+
+#define BATCH_SIZE 128
+#define SEQ_LEN 768
+#define N_HEADS 12
+#define N_LAYERS 12
+#define FFN_DIM 3072
+
+const int dk = SEQ_LEN / N_HEADS;
+
+#include "../protocols/protocols.h"
+using std::string;
+const string data_folder = "/data/";
 
 class Attention : public Layer {
     vector<vector<vector<uint64_t>>> wq, wk, wv;
@@ -18,7 +32,6 @@ public:
 };
 
 class MultiHeadAttention : public Layer {
-    const int n_heads = 12;
     Attention **attns;
 public:
     MultiHeadAttention();
@@ -57,7 +70,6 @@ class Bert : public Layer {
     Encoder **encoder;
 
 public:
-    static const unsigned int num_layers = 12;
     Bert();
     ~Bert();
 
