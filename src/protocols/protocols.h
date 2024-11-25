@@ -27,6 +27,16 @@ public:
                  vector<vector<vector<uint64_t>>>& output) {}
 };
 
+class MaxPool {
+protected:
+    unsigned int kernel_size, stride;
+
+public:
+    MaxPool(unsigned int _kernel_size) : kernel_size(_kernel_size), stride(1) {}
+    MaxPool(unsigned int _kernel_size, unsigned int _stride) : kernel_size(_kernel_size), stride(_stride) {}
+    void forward(const vector<vector<vector<uint64_t>>>& input, vector<vector<vector<uint64_t>>>& output) {}
+};
+
 class LayerNorm {
 public:
     LayerNorm() {}

@@ -5,7 +5,8 @@
 
 #include "layer.h"
 
-Attention::Attention() {
+Attention::Attention(unsigned int n) {
+    this->n = n;
     linear  = new Linear();
     softmax = new SoftMax();
 }
@@ -60,10 +61,11 @@ void Attention::forward(const vector<vector<vector<uint64_t>>>& input, vector<ve
     linear->forward(QK, V, output);
 }
 
-MultiHeadAttention::MultiHeadAttention() {
-    attns = new Attention*[N_HEADS];
+MultiHeadAttention::MultiHeadAttention(unsigned int n) {
+    this->n = n;
+    attns   = new Attention*[N_HEADS];
     for (int i = 0; i < N_HEADS; i++) {
-        attns[i] = new Attention();
+        attns[i] = new Attention(n);
     }
 }
 
@@ -94,9 +96,10 @@ void MultiHeadAttention::forward(const vector<vector<vector<uint64_t>>>& input,
     }
 }
 
-FFN::FFN() {
-    linear = new Linear();
-    gelu   = new GeLU();
+FFN::FFN(unsigned int n) {
+    this->n = n;
+    linear  = new Linear();
+    gelu    = new GeLU();
 }
 
 FFN::~FFN() {
@@ -129,10 +132,11 @@ void FFN::forward(const vector<vector<vector<uint64_t>>>& input, vector<vector<v
     }
 }
 
-Encoder::Encoder() {
-    attention = new MultiHeadAttention();
+Encoder::Encoder(unsigned int n) {
+    this->n   = n;
+    attention = new MultiHeadAttention(n);
     ln1       = new LayerNorm();
-    ffn       = new FFN();
+    ffn       = new FFN(n);
     ln2       = new LayerNorm();
 }
 
@@ -153,7 +157,7 @@ void Encoder::forward(const vector<vector<vector<uint64_t>>>& input, vector<vect
 Bert::Bert() {
     encoder = new Encoder*[N_LAYERS];
     for (unsigned int i = 0; i < N_LAYERS; i++) {
-        encoder[i] = new Encoder();
+        encoder[i] = new Encoder(i);
     }
 }
 
