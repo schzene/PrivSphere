@@ -1,10 +1,10 @@
-add_library(ps-network
+add_library(ps-nn
     bert.cpp
     resnet.cpp
 )
  
  
-target_link_libraries(ps-network
+target_link_libraries(ps-nn
     PUBLIC
     ps-protocols
 )
