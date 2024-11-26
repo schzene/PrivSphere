@@ -142,13 +142,19 @@ ResNet::ResNet() {
     layer2  = new ResNetBlock(2, 64, 128, 2);
     layer3  = new ResNetBlock(3, 128, 256, 2);
     layer4  = new ResNetBlock(4, 256, 512, 2);
+    fc      = new Linear();
 }
 
 ResNet::~ResNet() {
+    delete conv;
+    delete bn;
+    delete relu;
+    delete maxpool;
     delete layer1;
     delete layer2;
     delete layer3;
     delete layer4;
+    delete fc;
 }
 
 void ResNet::forward(const vector<vector<vector<uint64_t>>>& input, vector<vector<vector<uint64_t>>>& output) {

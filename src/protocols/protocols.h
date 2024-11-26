@@ -20,7 +20,6 @@ protected:
 
 public:
     Convolution() : stride(1) {}
-
     Convolution(unsigned int _stride) : stride(_stride) {}
 
     void forward(const vector<vector<vector<uint64_t>>>& input, const vector<vector<vector<vector<uint64_t>>>>& kernel,
