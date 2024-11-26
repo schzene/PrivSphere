@@ -1,11 +1,6 @@
 
 
 
-
-
-
-
-
 find_package(SEAL 4.1.2 EXACT QUIET PATHS "${CMAKE_BINARY_DIR}SEAL" NO_DEFAULT_PATH)
 if (NOT SEAL_FOUND)
     message(STATUS "SEAL 4.1.2 was not found: clone and install SEAL locally")
@@ -25,6 +20,19 @@ if (NOT SEAL_FOUND)
         WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/SEAL/")
     find_package(SEAL 4.1.2 EXACT REQUIRED PATHS "${CMAKE_BINARY_DIR}/SEAL" NO_DEFAULT_PATH)
 endif()
+
+
+add_library(PrivaSphere-he INTERFACE)
+
+target_include_directories(PrivaSphere-he
+INTERFACE 
+${CMAKE_CURRENT_SOURCE_DIR})
+
+target_link_libraries(PrivaSphere-he
+    INTERFACE
+    SEAL::seal
+)
+
 
 
 

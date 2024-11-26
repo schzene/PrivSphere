@@ -38,6 +38,8 @@ int main(int argc, const char** argv) {
             iopack->io->recv_data(data, 1);
             std::cout << "success \n";
         }
+        uint64_t a = std::numeric_limits<uint64_t>::max();
+        std::cout << a << "\n";
 
         delete iopack;
         delete fix;
