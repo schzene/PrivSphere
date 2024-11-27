@@ -574,17 +574,6 @@ struct ScalarBinaryOpTraits<int64_t, nisl::gfpScalar, BinaryOp> {
 }  // namespace Eigen
 
 namespace nisl {
-typedef Eigen::Matrix<TYPE, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> RowMatrixXi64;
-typedef Eigen::Matrix<TYPE, Eigen::Dynamic, Eigen::Dynamic, Eigen::ColMajor> ColMatrixXi64;
-typedef Eigen::Matrix<TYPE, 1, Eigen::Dynamic, Eigen::RowMajor> RowVectorXi64;
-typedef Eigen::Matrix<TYPE, Eigen::Dynamic, 1, Eigen::ColMajor> ColVectorXi64;
-typedef Eigen::Matrix<STYPE, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> SignedRowMatrixXi64;
-typedef Eigen::Matrix<STYPE, Eigen::Dynamic, Eigen::Dynamic, Eigen::ColMajor> SignedColMatrixXi64;
-typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> RowMatrixXd;
-typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::ColMajor> ColMatrixXd;
-typedef Eigen::Matrix<double, 1, Eigen::Dynamic, Eigen::RowMajor> RowVectorXd;
-typedef Eigen::Matrix<double, Eigen::Dynamic, 1, Eigen::ColMajor> ColVectorXd;
-
 // using block = __m128i;
 
 // #ifdef __x86_64__
