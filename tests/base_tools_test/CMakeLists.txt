@@ -1,16 +1,7 @@
-
 include_directories(${PROJECT_SOURCE_DIR}/src)
 
+add_executable(fix_comm "fixed_comm_test.cpp")
+target_link_libraries(fix_comm PrivaSphere)
 
-
-
-
-# cost_tets
-macro(add_fix_func_test _name)
-    add_executable(fix_${_name} "fixed_${_name}_test.cpp")
-    target_link_libraries(fix_${_name} PrivaSphere-comm PrivaSphere-ot PrivaSphere-fp)
-endmacro()
-
-
-add_fix_func_test(comm)
-
+add_executable(field_data "field_data_test.cpp")
+target_link_libraries(field_data PrivaSphere)

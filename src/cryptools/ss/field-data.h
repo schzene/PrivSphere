@@ -8,7 +8,7 @@
 
 #include "emp-tool.h"  // add const:PUBLIC ALICE BOB
 
-#define PR_61
+#define PR_31
 using Eigen::MatrixBase, Eigen::RowMajor;
 using std::istream;
 using std::ostream;
@@ -142,7 +142,7 @@ public:
     gfpScalar& inverse();  // 1/a
     gfpScalar& rsqrt();    // 1/sqrt(a)
     template <typename T>
-    gfpScalar& pow(T exp);
+    gfpScalar& pow(T exp); 
 
     // Get Bit
 
@@ -541,7 +541,7 @@ struct NumTraits<nisl::gfpScalar> : NumTraits<unsigned int> {
         RequireInitialization = 0,
         ReadCost              = 1,
         AddCost               = 3,
-        MulCost               = 3
+        MulCost               = 3,
     };
 };
 template <typename BinaryOp>
@@ -870,7 +870,7 @@ inline void batch_inversion(const gfpMatrix& a, gfpMatrix& a_inv) {
     prefixMult(a, a_prefix_mult);
 
     gfpMatrix a_prefix_inv(a.rows(), a.cols());
-    gfpScalar inv_all = a_prefix_mult(Eigen::indexing::last);
+    gfpScalar inv_all = a_prefix_mult(a.rows() - 1, a.cols() - 1);
     inv_all.inverse();
     // q_n = 1/p_n
     // q_i-1 = q_i * a_i

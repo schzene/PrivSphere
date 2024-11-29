@@ -16,6 +16,11 @@ add_library(PrivaSphere-cryptools
 
 target_link_libraries(PrivaSphere-cryptools
     INTERFACE
+    PrivaSphere-baseprot
+    PrivaSphere-comm
+    PrivaSphere-he
+    PrivaSphere-ot
+    PrivaSphere-fp
 )
 
 target_include_directories(PrivaSphere-cryptools
