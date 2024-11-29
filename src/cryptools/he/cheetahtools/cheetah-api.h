@@ -56,6 +56,10 @@ public:
         }
     }
 
+    inline uint64_t base_mod() const {
+        return base_mod_;
+    }
+
 protected:
     int64_t get_signed(uint64_t v) const;
     uint64_t reduce(uint64_t v) const;
