@@ -19,14 +19,11 @@ int main(int argc, char** argv) {
     amap.parse(argc, argv);
 
     int dim1 = 768, dim2 = 64, dim3 = 128;
-    nisl::IOPack* iopack     = new nisl::IOPack(party, port, address);
-    nisl::NetIO* io          = iopack->io;
-    uint64_t base_mod        = 2198100901889;
-    CheetahLinear* cheetahln = new CheetahLinear(party, address, base_mod, 12);
+    uint64_t base_mod = 2198100901889;
 
-    // Cheetah_op* cheetahop = new Cheetah_op(party, address, port, base_mod, 12)
+    Cheetah_op* cheetahop = new Cheetah_op(party, address, port, base_mod, 12)
 
-    HomFCSS::Meta meta;
+        HomFCSS::Meta meta;
     meta.input_shape     = TensorShape({dim2});
     meta.weight_shape    = TensorShape({dim3, dim2});
     meta.is_shared_input = false;
