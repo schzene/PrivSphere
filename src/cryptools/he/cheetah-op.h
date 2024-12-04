@@ -7,7 +7,7 @@
 #include "tensor_shape.h"
 using std::vector;
 using namespace nisl;
-using namespacce gemini;
+using namespace gemini;
 /**
  * A simple CHEETAH interface, with secondary encapsulation, makes it support PrivSphere's contex
  */
@@ -16,12 +16,10 @@ using namespacce gemini;
 class Cheetah_op {
 public:
     int party;
-    NetIO* io;
     CheetahLinear* linear;
 
-    Cheetah_op(int party, const char* address = "127.0.0.1", int port = 12345, uint64_t base_mod, size_t nthreads = 1) {
+    Cheetah_op(int party, NetIO* io, uint64_t base_mod, size_t nthreads = 1) {
         this->party  = party;
-        this->io     = new NetIO(address, port);
         this->linear = new CheetahLinear(party, io, base_mod, nthreads);
     }
 

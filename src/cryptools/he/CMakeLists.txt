@@ -24,7 +24,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 target_link_libraries(PrivaSphere-he
-    INTERFACE
+    PUBLIC
     cheetah-tools
 )
 

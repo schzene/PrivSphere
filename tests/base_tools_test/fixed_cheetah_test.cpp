@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
     nisl::IOPack* iopack     = new nisl::IOPack(party, port, address);
     nisl::NetIO* io          = iopack->io;
     uint64_t base_mod        = 2198100901889;
-    CheetahLinear* cheetahln = new CheetahLinear(party, address, base_mod, 12);
+    CheetahLinear* cheetahln = new CheetahLinear(party, io, base_mod, 12);
 
     // Cheetah_op* cheetahop = new Cheetah_op(party, address, port, base_mod, 12)
 
