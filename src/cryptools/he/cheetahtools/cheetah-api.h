@@ -5,10 +5,7 @@
 #include "hom_bn_ss.h"
 #include "hom_conv2d_ss.h"
 #include "hom_fc_ss.h"
-
-namespace nisl {
-class NetIO;
-}
+#include "../emp/emp-tool.h"
 
 namespace gemini {
 

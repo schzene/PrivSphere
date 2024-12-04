@@ -9,12 +9,12 @@ nisl::NetIO* io;
 const gemini::CheetahLinear* linear;
 
 void init(int party) {
-    // io = new nisl::NetIO(ip, port);
+    io = new nisl::NetIO(ip, port);
     linear = new gemini::CheetahLinear(party, io, 1ULL << 13);
 }
 
 void deinit() {
-    // delete io;
+    delete io;
     delete linear;
 }
 

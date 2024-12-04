@@ -1,4 +1,6 @@
 #pragma once
+#ifndef PRIVSPHERE_CHEETAH_H__
+#define PRIVSPHERE_CHEETAH_H__
 
 #include <cryptools/he/cheetahtools/cheetah-api.h>
 
@@ -18,3 +20,5 @@ void fc(const vector<vector<vector<uint64_t>>>& input, const vector<vector<vecto
 void bn(const vector<vector<vector<uint64_t>>>& input, const vector<vector<vector<uint64_t>>>& scale,
         vector<vector<vector<uint64_t>>>& output);
 }  // namespace cheetah
+
+#endif
