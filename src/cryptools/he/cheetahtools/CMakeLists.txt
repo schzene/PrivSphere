@@ -1,4 +1,6 @@
 include_directories(${CMAKE_CURRENT_LIST_DIR})
+find_package(SEAL 4.1.2 EXACT QUIET PATHS "${CMAKE_BINARY_DIR}/SEAL/" NO_DEFAULT_PATH)
+find_package(Eigen3 3.3 QUIET NO_MODULE PATHS "${CMAKE_BINARY_DIR}/eigen" NO_DEFAULT_PATH)
 
 add_subdirectory(core)
 
@@ -16,8 +18,6 @@ target_include_directories(cheetah-tools
 INTERFACE 
 ${CMAKE_CURRENT_SOURCE_DIR})
 
-find_package(SEAL 4.1.2 EXACT QUIET PATHS "${PROJECT_SOURCE_DIR}/build/" NO_DEFAULT_PATH)
-find_package(Eigen3 3.3 QUIET NO_MODULE PATHS "${CMAKE_BINARY_DIR}/eigen" NO_DEFAULT_PATH)
 target_link_libraries(cheetah-tools
     cheetah-core
     SEAL::seal

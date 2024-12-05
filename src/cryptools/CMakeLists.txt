@@ -1,8 +1,4 @@
-
 include_directories(${CMAKE_CURRENT_LIST_DIR})
-
-
-
 
 add_subdirectory(ss)
 add_subdirectory(he)
@@ -28,6 +24,3 @@ target_include_directories(PrivaSphere-cryptools
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:./>
 )
-
-
-
