@@ -17,6 +17,7 @@ using namespace std;
 using namespace seal;
 using namespace seal::util;
 using namespace std::chrono;
+using namespace nexus;
 
 void MM_test();
 void argmax_test();

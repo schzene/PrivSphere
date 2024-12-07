@@ -37,9 +37,9 @@ public:
             vector<vector<vector<uint64_t>>>& output);
 
     void bn_direct();
-
-    vector<vector<vector<uint64_t>>> from_tensor(const Tensor<uint64_t>& tensor);
-    Tensor<uint64_t> to_tensor(const vector<vector<vector<uint64_t>>>& input);
+    
+    static vector<vector<vector<uint64_t>>> from_tensor(const Tensor<uint64_t>& tensor);
+    static Tensor<uint64_t> to_tensor(const vector<vector<vector<uint64_t>>>& input);
 
 private:
     /* data */
