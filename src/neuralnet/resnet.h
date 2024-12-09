@@ -92,7 +92,7 @@ ResNet(
 */
 
 class ResNetBlock {
-    unsigned int n, in_channels, out_channels, stride;
+    unsigned int party, n, in_channels, out_channels, stride;
 
     vector<vector<vector<vector<uint64_t>>>> k1, k2, k3, k4, k;
     vector<vector<uint64_t>> b1, b2, b3, b4, b;
@@ -102,12 +102,14 @@ class ResNetBlock {
     ReLU* relu;
 
 public:
-    ResNetBlock(unsigned int n, unsigned int in_channels, unsigned int out_channels, unsigned int stride = 1);
+    ResNetBlock(unsigned int party, unsigned int n, unsigned int in_channels, unsigned int out_channels,
+                unsigned int stride = 1);
     ~ResNetBlock();
     void forward(const vector<vector<vector<uint64_t>>>& input, vector<vector<vector<uint64_t>>>& output);
 };
 
 class ResNet {
+    unsigned int party;
     vector<vector<vector<vector<uint64_t>>>> k;
     vector<vector<vector<uint64_t>>> w;
     vector<vector<uint64_t>> b, b_w;
@@ -115,7 +117,7 @@ class ResNet {
     Convolution* conv;
     BatchNorm* bn;
     ReLU* relu;
-    MaxPool* maxpool;
+    // MaxPool* maxpool;
     ResNetBlock* layer1;
     ResNetBlock* layer2;
     ResNetBlock* layer3;

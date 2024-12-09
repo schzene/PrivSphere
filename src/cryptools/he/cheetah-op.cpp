@@ -46,6 +46,19 @@ Tensor<uint64_t> Cheetah_op::to_tensor(const vector<vector<vector<uint64_t>>>& i
     return input_tensor;
 }
 
+Tensor<uint64_t> Cheetah_op::to_tensor(const uint64_t input, unsigned int shape1, unsigned int shape2,
+                                       unsigned int shape3) {
+    Tensor<uint64_t> input_tensor(TensorShape({shape1, shape2, shape3}));
+    for (unsigned int i = 0; i < shape1; i++) {
+        for (unsigned int j = 0; j < shape2; j++) {
+            for (unsigned int k = 0; k < shape3; k++) {
+                input_tensor(i, j, k) = input;
+            }
+        }
+    }
+    return input_tensor;
+}
+
 void Cheetah_op::conv2d(const vector<vector<vector<uint64_t>>>& input,
                         const vector<vector<vector<vector<uint64_t>>>>& kernel, size_t stride,
                         vector<vector<vector<uint64_t>>>& output) {
@@ -83,10 +96,10 @@ void Cheetah_op::fc(const vector<vector<vector<uint64_t>>>& input, const vector<
     output = from_tensor(output_tensor);
 }
 
-void Cheetah_op::bn(const vector<vector<vector<uint64_t>>>& input, const vector<vector<vector<uint64_t>>>& scale,
-                    vector<vector<vector<uint64_t>>>& output) {
+void Cheetah_op::bn(const vector<vector<vector<uint64_t>>>& input, vector<vector<vector<uint64_t>>>& output,
+                    const uint64_t scale) {
     Tensor<uint64_t> input_tensor = to_tensor(input);
-    Tensor<uint64_t> scale_tensor = to_tensor(scale);
+    Tensor<uint64_t> scale_tensor = to_tensor(scale, input.size(), input[0].size(), input[0][0].size());
     CheetahLinear::BNMeta bn_meta;
     bn_meta.ishape          = input_tensor.shape();
     bn_meta.vec_shape       = scale_tensor.shape();

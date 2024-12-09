@@ -33,13 +33,15 @@ public:
     void fc(const vector<vector<vector<uint64_t>>>& input, const vector<vector<vector<uint64_t>>>& weight,
             vector<vector<vector<uint64_t>>>& output);
 
-    void bn(const vector<vector<vector<uint64_t>>>& input, const vector<vector<vector<uint64_t>>>& scale,
-            vector<vector<vector<uint64_t>>>& output);
+    void bn(const vector<vector<vector<uint64_t>>>& input, vector<vector<vector<uint64_t>>>& output,
+            const uint64_t scale);
 
     void bn_direct();
-    
+
     static vector<vector<vector<uint64_t>>> from_tensor(const Tensor<uint64_t>& tensor);
     static Tensor<uint64_t> to_tensor(const vector<vector<vector<uint64_t>>>& input);
+    static Tensor<uint64_t> to_tensor(const uint64_t input, unsigned int shape1, unsigned int shape2,
+                                      unsigned int shape3);
 
 private:
     /* data */
