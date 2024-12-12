@@ -3,8 +3,10 @@
 #include <vector>
 
 #include "cheetah-api.h"
+#include "config.h"
 #include "emp-tool.h"
 #include "tensor_shape.h"
+
 using std::vector;
 using namespace nisl;
 using namespace gemini;
@@ -16,9 +18,12 @@ using namespace gemini;
 class Cheetah_op {
 public:
     int party;
+    static const Type type = Type::HE;
+    typedef vector<vector<vector<uint64_t>>> Type;
+
     CheetahLinear* linear;
 
-    Cheetah_op(int party, NetIO* io, uint64_t base_mod, size_t nthreads = 1) {
+    Cheetah_op(int party, NetIO* io, uint64_t base_mod = 1ULL << ELL, size_t nthreads = 1) {
         this->party  = party;
         this->linear = new CheetahLinear(party, io, base_mod, nthreads);
     }

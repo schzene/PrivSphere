@@ -1,4 +1,4 @@
-#include "nexus-he-op.h"
+#include "nexus-op.h"
 
 #include <seal/ciphertext.h>
 
@@ -7,7 +7,7 @@
 #include "Bootstrapper.h"
 #include "argmax.h"
 
-NEXUS_op::NEXUS_op(int party, unsigned long logN, vector<int> MM_COEFF_MODULI, double _SCALE) : SCALE(_SCALE) {
+NEXUS_op::NEXUS_op(int party, NetIO* io, unsigned long logN, vector<int> MM_COEFF_MODULI, double _scale) : scale(_scale) {
     // QuickMax: 17
     int main_mod_count = 17;  // Mod count after bootstrapping: 18
     // Subsum 1 + coefftoslot 2 + ModReduction 9 + slottocoeff 2
@@ -41,13 +41,13 @@ NEXUS_op::NEXUS_op(int party, unsigned long logN, vector<int> MM_COEFF_MODULI, d
 
     encryptor = new Encryptor(*context, public_key);
     encoder   = new CKKSEncoder(*context);
-    evaluator = new Evaluator(*context, *encoder);
+    evaluator = new Evaluator(*context);
     decryptor = new Decryptor(*context, secret_key);
 
     ckks_evaluator =
-        new CKKSEvaluator(*context, *encryptor, *decryptor, *encoder, *evaluator, SCALE, relin_keys, galois_keys);
+        new CKKSEvaluator(*context, *encryptor, *decryptor, *encoder, *evaluator, scale, relin_keys, galois_keys);
     bootstrapper =
-        new Bootstrapper(loge, logN - 2, logN - 1, total_level, SCALE, boundary_K, deg, scale_factor, inverse_deg,
+        new Bootstrapper(loge, logN - 2, logN - 1, total_level, scale, boundary_K, deg, scale_factor, inverse_deg,
                          *context, *keygen, *encoder, *encryptor, *decryptor, *evaluator, relin_keys, galois_keys);
 
     mme               = new MMEvaluator(*ckks_evaluator);
@@ -118,7 +118,7 @@ void NEXUS_op::gelu(const vector<vector<vector<double>>>& input, vector<vector<v
         for (size_t j = 0; j < num_feature; j++) {
             Plaintext plain_input, plain_output;
             Ciphertext cipher_input, cipher_output;
-            ckks_evaluator->encoder->encode(input[i][j], SCALE, plain_input);
+            ckks_evaluator->encoder->encode(input[i][j], scale, plain_input);
             ckks_evaluator->encryptor->encrypt(plain_input, cipher_input);
 
             gelu_evaluator->gelu(cipher_input, cipher_output);
@@ -140,7 +140,7 @@ void NEXUS_op::ln(const vector<vector<vector<double>>>& input, vector<vector<vec
         for (size_t j = 0; j < num_feature; j++) {
             Plaintext plain_input, plain_output;
             Ciphertext cipher_input, cipher_output;
-            ckks_evaluator->encoder->encode(input[i][j], SCALE, plain_input);
+            ckks_evaluator->encoder->encode(input[i][j], scale, plain_input);
             ckks_evaluator->encryptor->encrypt(plain_input, cipher_input);
 
             ln_evaluator->layer_norm(cipher_input, cipher_output, 1024);
@@ -162,7 +162,7 @@ void NEXUS_op::softmax(const vector<vector<vector<double>>>& input, vector<vecto
         for (size_t j = 0; j < num_feature; j++) {
             Plaintext plain_input, plain_output;
             Ciphertext cipher_input, cipher_output;
-            ckks_evaluator->encoder->encode(input[i][j], SCALE, plain_input);
+            ckks_evaluator->encoder->encode(input[i][j], scale, plain_input);
             ckks_evaluator->encryptor->encrypt(plain_input, cipher_input);
 
             ln_evaluator->layer_norm(cipher_input, cipher_output, 128);

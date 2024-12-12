@@ -1,6 +1,5 @@
 add_library(PrivaSphere-nn
-    bert.cpp
-    resnet.cpp
+    simplenet.cpp
 )
  
 target_include_directories(PrivaSphere-nn
