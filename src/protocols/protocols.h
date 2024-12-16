@@ -10,6 +10,17 @@
 #include "cryptools/he/nexus-op.h"
 
 /**
+ * @brief Convert input 'i' of type 's' to output 'o' of type 't'
+ *
+ * @param party Participants
+ * @param s input type
+ * @param t output type
+ * @param i Input
+ * @param o Output
+ */
+void convert(unsigned party, const MPCType s, const MPCType t, const Data& i, Data& o);
+
+/**
  * @brief Convert input 'i' of operator type 's' to output 'o' of operator type 't'
  *
  * @param party Participants
@@ -18,9 +29,8 @@
  * @param i Input
  * @param o Output
  */
-template <class S, class T, class I, class O>
-void convert(unsigned party, S s, T t, I& i, O& o) {
-    convert(party, s.type, t.type, i, o);
+inline void convert(unsigned party, const OP* s, const OP* t, const Data& i, Data& o) {
+    convert(party, s->type, t->type, i, o);
 }
 
 /**
@@ -32,9 +42,8 @@ void convert(unsigned party, S s, T t, I& i, O& o) {
  * @param i Input
  * @param o Output
  */
-template <class T, class I, class O>
-void convert(unsigned party, Type s, T t, I& i, O& o) {
-    convert(party, s, t.type, i);
+inline void convert(unsigned party, const MPCType s, const OP* t, const Data& i, Data& o) {
+    convert(party, s, t->type, i, o);
 }
 
 /**
@@ -46,71 +55,8 @@ void convert(unsigned party, Type s, T t, I& i, O& o) {
  * @param i Input
  * @param o Output
  */
-template <class S, class I, class O>
-void convert(unsigned party, S s, Type t, I& i, O& o) {
-    convert(party, s.type, t, i);
-}
-
-
-/**
- * @brief Convert input 'i' of type 's' to output 'o' of type 't'
- *
- * @param party Participants
- * @param s input type
- * @param t output type
- * @param i Input
- * @param o Output
- */
-template <class I, class O>
-void convert(unsigned party, Type s, Type t, I& i, O& o) {
-    switch (s) {
-        case Type::HE: {
-            switch (t) {
-                case Type::HE: {
-                    return i;
-                }
-                case Type::SS: {
-                    break;
-                }
-                case Type::NEXUS: {
-                    o = vector<vector<vector<double>>>(
-                        i.size(), vector<vector<double>>(i[0].size(), vector<double>(i[0][0].size(), 1.0)));
-                }
-            }
-            break;
-        }
-        case Type::SS: {
-            switch (t) {
-                case Type::HE: {
-                    break;
-                }
-                case Type::SS: {
-                    return i;
-                }
-                case Type::NEXUS: {
-                    break;
-                }
-            }
-            break;
-        }
-        case Type::NEXUS: {
-            switch (t) {
-                case Type::HE: {
-                    o = vector<vector<vector<uint64_t>>>(
-                        i.size(), vector<vector<uint64_t>>(i[0].size(), vector<uint64_t>(i[0][0].size(), 1)));
-                }
-                case Type::SS: {
-                    break;
-                }
-                case Type::NEXUS: {
-                    return i;
-                }
-            }
-            break;
-        }
-    }
-    o = vector<vector<vector<uint64_t>>>(i.size(),
-                                         vector<vector<uint64_t>>(i[0].size(), vector<uint64_t>(i[0][0].size(), 1)));
+inline void convert(unsigned party, const OP* s, const MPCType t, const Data& i, Data& o) {
+    convert(party, s->type, t, i, o);
 }
 
 void load_data(vector<vector<vector<uint64_t>>> A, size_t dim1, size_t dim2, size_t dim3);

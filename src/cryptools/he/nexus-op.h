@@ -12,11 +12,11 @@
 #include <vector>
 
 #include "argmax.h"
-#include "config.h"
 #include "emp-tool.h"
 #include "gelu.h"
 #include "layer_norm.h"
 #include "matrix_mul.h"
+#include "op.h"
 #include "softmax.h"
 
 using namespace std;
@@ -31,30 +31,28 @@ using namespace nexus;
  */
 // "127.0.0.1"
 //  = 12345
-class NEXUS_op {
-    vector<string> TEST_TARGETS = {"MatMul", "Argmax", "GELU", "LayerNorm", "SoftMax"};
-
+class NEXUS_op: public OP {
 public:
-    static const Type type = Type::NEXUS;
-    int party;
+    std::vector<std::string> OPs = {"fc", "argmax", "gelu", "ln", "softmax"};
+    static const MPCType type = MPCType::NEXUS;
     // CheetahLinear* linear;
-    typedef vector<vector<vector<double>>> Type;
+    typedef vector<vector<vector<double>>> OPType;
 
     NEXUS_op(int party, NetIO* io, unsigned long logN = 13, vector<int> MM_COEFF_MODULI = {60, 40, 60},
              double scale = pow(2.0, 40));
 
     ~NEXUS_op();
 
-    void fc(vector<vector<vector<double>>>& input, const vector<vector<vector<double>>>& weight,
-            vector<vector<vector<double>>>& output);
+    void fc(Data& input, const Data& weight,
+            Data& output);
 
     void argmax();
 
-    void gelu(const vector<vector<vector<double>>>& input, vector<vector<vector<double>>>& output);
+    void gelu(const Data& input, Data& output);
 
-    void ln(const vector<vector<vector<double>>>& input, vector<vector<vector<double>>>& output);
+    void ln(const Data& input, Data& output);
 
-    void softmax(const vector<vector<vector<double>>>& input, vector<vector<vector<double>>>& output);
+    void softmax(const Data& input, Data& output);
 
 private:
     size_t poly_modulus_degree, scale;

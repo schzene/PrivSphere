@@ -7,7 +7,8 @@
 #include "Bootstrapper.h"
 #include "argmax.h"
 
-NEXUS_op::NEXUS_op(int party, NetIO* io, unsigned long logN, vector<int> MM_COEFF_MODULI, double _scale) : scale(_scale) {
+NEXUS_op::NEXUS_op(int party, NetIO* io, unsigned long logN, vector<int> MM_COEFF_MODULI, double _scale)
+    : OP(party), scale(_scale) {
     // QuickMax: 17
     int main_mod_count = 17;  // Mod count after bootstrapping: 18
     // Subsum 1 + coefftoslot 2 + ModReduction 9 + slottocoeff 2
@@ -19,8 +20,6 @@ NEXUS_op::NEXUS_op(int party, NetIO* io, unsigned long logN, vector<int> MM_COEF
     long scale_factor = 2;
     long inverse_deg  = 1;
     long loge         = 10;
-
-    this->party = party;
 
     poly_modulus_degree = 1 << logN;
     parms               = new EncryptionParameters(scheme_type::ckks);
@@ -74,23 +73,28 @@ NEXUS_op::~NEXUS_op() {
     delete softmax_evaluator;
 }
 
-void NEXUS_op::fc(vector<vector<vector<double>>>& input, const vector<vector<vector<double>>>& weight,
-                  vector<vector<vector<double>>>& output) {
-    auto num_feature = input.size(), dim1 = input[0].size(), dim2 = input[0][0].size(), dim3 = weight[0][0].size();
+void NEXUS_op::fc(Data& input, const Data& weight, Data& output) {
+    auto num_feature = input.NexusData.size(), dim1 = input.NexusData[0].size(), dim2 = input.NexusData[0][0].size(),
+         dim3 = weight.NexusData[0][0].size();
+
+    output = Data();
+    output.NexusData =
+        vector<vector<vector<double>>>(num_feature, vector<vector<double>>(dim1, vector<double>(dim3, 0.0)));
+
     for (auto nf = 0; nf < num_feature; nf++) {
         vector<vector<double>> row_pack;
         vector<double> row_ct(poly_modulus_degree, 0.0);
         for (auto i = 0; i < dim2 * dim3; i++) {
             int row                         = i / dim3;
             int col                         = i % dim3;
-            row_ct[i % poly_modulus_degree] = weight[nf][row][col];
+            row_ct[i % poly_modulus_degree] = weight.NexusData[nf][row][col];
             if (i % poly_modulus_degree == (poly_modulus_degree - 1)) {
                 row_pack.push_back(row_ct);
             }
         }
 
         vector<Ciphertext> res;
-        mme->matrix_mul(input[nf], row_pack, res);
+        mme->matrix_mul(input.NexusData[nf], row_pack, res);
 
         size_t res_size = res.size();
         vector<Plaintext> res_pt(res_size);
@@ -100,25 +104,29 @@ void NEXUS_op::fc(vector<vector<vector<double>>>& input, const vector<vector<vec
             ckks_evaluator->encoder->decode(res_pt[i], mm_res[i]);
         }
         for (auto i = 0; i < dim1 * dim3; i++) {
-            int row1               = i / dim3;
-            int col1               = i % dim3;
-            int row2               = i / poly_modulus_degree;
-            int col2               = i % poly_modulus_degree;
-            output[nf][row1][col1] = mm_res[row2][col2];
+            int row1                         = i / dim3;
+            int col1                         = i % dim3;
+            int row2                         = i / poly_modulus_degree;
+            int col2                         = i % poly_modulus_degree;
+            output.NexusData[nf][row1][col1] = mm_res[row2][col2];
         }
     }
 }
 
 void NEXUS_op::argmax() {}
 
-void NEXUS_op::gelu(const vector<vector<vector<double>>>& input, vector<vector<vector<double>>>& output) {
-    size_t num_feature = input.size(), dim1 = input[0].size(), dim2 = input[0][0].size();
+void NEXUS_op::gelu(const Data& input, Data& output) {
+    size_t num_feature = input.NexusData.size(), dim1 = input.NexusData[0].size(), dim2 = input.NexusData[0][0].size();
+
+    output = Data();
+    output.NexusData =
+        vector<vector<vector<double>>>(num_feature, vector<vector<double>>(dim1, vector<double>(dim2, 0.0)));
 
     for (size_t i = 0; i < num_feature; i++) {
         for (size_t j = 0; j < num_feature; j++) {
             Plaintext plain_input, plain_output;
             Ciphertext cipher_input, cipher_output;
-            ckks_evaluator->encoder->encode(input[i][j], scale, plain_input);
+            ckks_evaluator->encoder->encode(input.NexusData[i][j], scale, plain_input);
             ckks_evaluator->encryptor->encrypt(plain_input, cipher_input);
 
             gelu_evaluator->gelu(cipher_input, cipher_output);
@@ -127,20 +135,24 @@ void NEXUS_op::gelu(const vector<vector<vector<double>>>& input, vector<vector<v
             ckks_evaluator->decryptor->decrypt(cipher_output, plain_output);
             ckks_evaluator->encoder->decode(plain_output, output_vector);
             for (size_t k = 0; k < dim2; k++) {
-                output[i][j][k] = output_vector[k];
+                output.NexusData[i][j][k] = output_vector[k];
             }
         }
     }
 }
 
-void NEXUS_op::ln(const vector<vector<vector<double>>>& input, vector<vector<vector<double>>>& output) {
-    size_t num_feature = input.size(), dim1 = input[0].size(), dim2 = input[0][0].size();
+void NEXUS_op::ln(const Data& input, Data& output) {
+    size_t num_feature = input.NexusData.size(), dim1 = input.NexusData[0].size(), dim2 = input.NexusData[0][0].size();
+
+    output = Data();
+    output.NexusData =
+        vector<vector<vector<double>>>(num_feature, vector<vector<double>>(dim1, vector<double>(dim2, 0.0)));
 
     for (size_t i = 0; i < num_feature; i++) {
         for (size_t j = 0; j < num_feature; j++) {
             Plaintext plain_input, plain_output;
             Ciphertext cipher_input, cipher_output;
-            ckks_evaluator->encoder->encode(input[i][j], scale, plain_input);
+            ckks_evaluator->encoder->encode(input.NexusData[i][j], scale, plain_input);
             ckks_evaluator->encryptor->encrypt(plain_input, cipher_input);
 
             ln_evaluator->layer_norm(cipher_input, cipher_output, 1024);
@@ -149,20 +161,24 @@ void NEXUS_op::ln(const vector<vector<vector<double>>>& input, vector<vector<vec
             ckks_evaluator->decryptor->decrypt(cipher_output, plain_output);
             ckks_evaluator->encoder->decode(plain_output, output_vector);
             for (size_t k = 0; k < dim2; k++) {
-                output[i][j][k] = output_vector[k];
+                output.NexusData[i][j][k] = output_vector[k];
             }
         }
     }
 }
 
-void NEXUS_op::softmax(const vector<vector<vector<double>>>& input, vector<vector<vector<double>>>& output) {
-    size_t num_feature = input.size(), dim1 = input[0].size(), dim2 = input[0][0].size();
+void NEXUS_op::softmax(const Data& input, Data& output) {
+    size_t num_feature = input.NexusData.size(), dim1 = input.NexusData[0].size(), dim2 = input.NexusData[0][0].size();
+
+    output = Data();
+    output.NexusData =
+        vector<vector<vector<double>>>(num_feature, vector<vector<double>>(dim1, vector<double>(dim2, 0.0)));
 
     for (size_t i = 0; i < num_feature; i++) {
         for (size_t j = 0; j < num_feature; j++) {
             Plaintext plain_input, plain_output;
             Ciphertext cipher_input, cipher_output;
-            ckks_evaluator->encoder->encode(input[i][j], scale, plain_input);
+            ckks_evaluator->encoder->encode(input.NexusData[i][j], scale, plain_input);
             ckks_evaluator->encryptor->encrypt(plain_input, cipher_input);
 
             ln_evaluator->layer_norm(cipher_input, cipher_output, 128);
@@ -171,7 +187,7 @@ void NEXUS_op::softmax(const vector<vector<vector<double>>>& input, vector<vecto
             ckks_evaluator->decryptor->decrypt(cipher_output, plain_output);
             ckks_evaluator->encoder->decode(plain_output, output_vector);
             for (size_t k = 0; k < dim2; k++) {
-                output[i][j][k] = output_vector[k];
+                output.NexusData[i][j][k] = output_vector[k];
             }
         }
     }
