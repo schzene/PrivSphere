@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../lib/libPrivaSphere-he.a "CMakeFiles/PrivaSphere-he.dir/cheetah-op.cpp.o" "CMakeFiles/PrivaSphere-he.dir/nexus-op.cpp.o"
+/usr/bin/ranlib ../../../lib/libPrivaSphere-he.a

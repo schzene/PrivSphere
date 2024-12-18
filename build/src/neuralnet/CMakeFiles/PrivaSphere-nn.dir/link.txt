@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../lib/libPrivaSphere-nn.a "CMakeFiles/PrivaSphere-nn.dir/simplenet.cpp.o"
+/usr/bin/ranlib ../../lib/libPrivaSphere-nn.a

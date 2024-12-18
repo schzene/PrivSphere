@@ -1,0 +1,243 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "lib/libcheetah-tools.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"target_link_libraries",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"src/cryptools/he/cheetahtools/CMakeLists.txt",
+			"src/cryptools/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 7,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 21,
+				"parent" : 0
+			},
+			{
+				"file" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 1,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 1,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"backtrace" : 2,
+					"fragment" : "-pthread"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-maes"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-msse4.1"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-mavx"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-mavx2"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-faligned-new"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-std=c++17"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-O3"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wno-deprecated-declarations"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-mrdseed"
+				},
+				{
+					"fragment" : "-std=gnu++17"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 4,
+					"path" : "/home/PrivSphere/src/cryptools"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/home/PrivSphere/src/cryptools/he/cheetahtools"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/PrivSphere/src/cryptools/emp"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/home/PrivSphere/extern/SEAL/native/src"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/home/PrivSphere/build/SEAL/native/src"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/home/PrivSphere/extern/eigen"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					2
+				],
+				"standard" : "17"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "cheetah-core::@9d995d5b813b9c160893"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "cheetah-core-utils::@332d4c9545bf045d884b"
+		}
+	],
+	"id" : "cheetah-tools::@9f748678098feef17b05",
+	"name" : "cheetah-tools",
+	"nameOnDisk" : "libcheetah-tools.a",
+	"paths" : 
+	{
+		"build" : "src/cryptools/he/cheetahtools",
+		"source" : "src/cryptools/he/cheetahtools"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/cryptools/he/cheetahtools/cheetah-api.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/cryptools/he/cheetahtools/hom_bn_ss.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/cryptools/he/cheetahtools/hom_conv2d_ss.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/cryptools/he/cheetahtools/hom_fc_ss.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/cryptools/he/cheetahtools/shape_inference.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/cryptools/he/cheetahtools/tensor_encoder.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/cryptools/he/cheetahtools/tensor_shape.cc",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

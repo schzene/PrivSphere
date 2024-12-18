@@ -1,0 +1,202 @@
+[
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/ss",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/emp -I/home/PrivSphere/src/cryptools/ot -I/home/PrivSphere/src/cryptools/basetool -isystem /home/PrivSphere/extern/eigen -pthread -maes -msse4.1 -mavx -mavx2 -faligned-new -std=c++17 -O3 -Wno-deprecated-declarations -mrdseed -std=gnu++17 -o CMakeFiles/PrivaSphere-fp.dir/ring-op.cpp.o -c /home/PrivSphere/src/cryptools/ss/ring-op.cpp",
+  "file": "/home/PrivSphere/src/cryptools/ss/ring-op.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/ss",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/emp -I/home/PrivSphere/src/cryptools/ot -I/home/PrivSphere/src/cryptools/basetool -isystem /home/PrivSphere/extern/eigen -pthread -maes -msse4.1 -mavx -mavx2 -faligned-new -std=c++17 -O3 -Wno-deprecated-declarations -mrdseed -std=gnu++17 -o CMakeFiles/PrivaSphere-fp.dir/bool-op.cpp.o -c /home/PrivSphere/src/cryptools/ss/bool-op.cpp",
+  "file": "/home/PrivSphere/src/cryptools/ss/bool-op.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src -I/home/PrivSphere/src/cryptools/he -I/home/PrivSphere/src/cryptools/he/cheetahtools -I/home/PrivSphere/src/cryptools/emp -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -isystem /home/PrivSphere/extern/eigen -pthread -maes -msse4.1 -mavx -mavx2 -faligned-new -std=c++17 -O3 -Wno-deprecated-declarations -mrdseed -std=gnu++17 -o CMakeFiles/PrivaSphere-he.dir/cheetah-op.cpp.o -c /home/PrivSphere/src/cryptools/he/cheetah-op.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/cheetah-op.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src -I/home/PrivSphere/src/cryptools/he -I/home/PrivSphere/src/cryptools/he/cheetahtools -I/home/PrivSphere/src/cryptools/emp -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -isystem /home/PrivSphere/extern/eigen -pthread -maes -msse4.1 -mavx -mavx2 -faligned-new -std=c++17 -O3 -Wno-deprecated-declarations -mrdseed -std=gnu++17 -o CMakeFiles/PrivaSphere-he.dir/nexus-op.cpp.o -c /home/PrivSphere/src/cryptools/he/nexus-op.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexus-op.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/cheetahtools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/cheetahtools -I/home/PrivSphere/src/cryptools/emp -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -isystem /home/PrivSphere/extern/eigen -pthread -maes -msse4.1 -mavx -mavx2 -faligned-new -std=c++17 -O3 -Wno-deprecated-declarations -mrdseed -std=gnu++17 -o CMakeFiles/cheetah-tools.dir/cheetah-api.cpp.o -c /home/PrivSphere/src/cryptools/he/cheetahtools/cheetah-api.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/cheetahtools/cheetah-api.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/cheetahtools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/cheetahtools -I/home/PrivSphere/src/cryptools/emp -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -isystem /home/PrivSphere/extern/eigen -pthread -maes -msse4.1 -mavx -mavx2 -faligned-new -std=c++17 -O3 -Wno-deprecated-declarations -mrdseed -std=gnu++17 -o CMakeFiles/cheetah-tools.dir/hom_bn_ss.cc.o -c /home/PrivSphere/src/cryptools/he/cheetahtools/hom_bn_ss.cc",
+  "file": "/home/PrivSphere/src/cryptools/he/cheetahtools/hom_bn_ss.cc"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/cheetahtools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/cheetahtools -I/home/PrivSphere/src/cryptools/emp -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -isystem /home/PrivSphere/extern/eigen -pthread -maes -msse4.1 -mavx -mavx2 -faligned-new -std=c++17 -O3 -Wno-deprecated-declarations -mrdseed -std=gnu++17 -o CMakeFiles/cheetah-tools.dir/hom_conv2d_ss.cc.o -c /home/PrivSphere/src/cryptools/he/cheetahtools/hom_conv2d_ss.cc",
+  "file": "/home/PrivSphere/src/cryptools/he/cheetahtools/hom_conv2d_ss.cc"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/cheetahtools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/cheetahtools -I/home/PrivSphere/src/cryptools/emp -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -isystem /home/PrivSphere/extern/eigen -pthread -maes -msse4.1 -mavx -mavx2 -faligned-new -std=c++17 -O3 -Wno-deprecated-declarations -mrdseed -std=gnu++17 -o CMakeFiles/cheetah-tools.dir/hom_fc_ss.cc.o -c /home/PrivSphere/src/cryptools/he/cheetahtools/hom_fc_ss.cc",
+  "file": "/home/PrivSphere/src/cryptools/he/cheetahtools/hom_fc_ss.cc"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/cheetahtools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/cheetahtools -I/home/PrivSphere/src/cryptools/emp -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -isystem /home/PrivSphere/extern/eigen -pthread -maes -msse4.1 -mavx -mavx2 -faligned-new -std=c++17 -O3 -Wno-deprecated-declarations -mrdseed -std=gnu++17 -o CMakeFiles/cheetah-tools.dir/shape_inference.cc.o -c /home/PrivSphere/src/cryptools/he/cheetahtools/shape_inference.cc",
+  "file": "/home/PrivSphere/src/cryptools/he/cheetahtools/shape_inference.cc"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/cheetahtools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/cheetahtools -I/home/PrivSphere/src/cryptools/emp -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -isystem /home/PrivSphere/extern/eigen -pthread -maes -msse4.1 -mavx -mavx2 -faligned-new -std=c++17 -O3 -Wno-deprecated-declarations -mrdseed -std=gnu++17 -o CMakeFiles/cheetah-tools.dir/tensor_encoder.cc.o -c /home/PrivSphere/src/cryptools/he/cheetahtools/tensor_encoder.cc",
+  "file": "/home/PrivSphere/src/cryptools/he/cheetahtools/tensor_encoder.cc"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/cheetahtools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/cheetahtools -I/home/PrivSphere/src/cryptools/emp -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -isystem /home/PrivSphere/extern/eigen -pthread -maes -msse4.1 -mavx -mavx2 -faligned-new -std=c++17 -O3 -Wno-deprecated-declarations -mrdseed -std=gnu++17 -o CMakeFiles/cheetah-tools.dir/tensor_shape.cc.o -c /home/PrivSphere/src/cryptools/he/cheetahtools/tensor_shape.cc",
+  "file": "/home/PrivSphere/src/cryptools/he/cheetahtools/tensor_shape.cc"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/cheetahtools/core",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/cheetahtools -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/cheetah-core.dir/logging.cc.o -c /home/PrivSphere/src/cryptools/he/cheetahtools/core/logging.cc",
+  "file": "/home/PrivSphere/src/cryptools/he/cheetahtools/core/logging.cc"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/cheetahtools/core",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/cheetahtools -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/cheetah-core.dir/types.cc.o -c /home/PrivSphere/src/cryptools/he/cheetahtools/core/types.cc",
+  "file": "/home/PrivSphere/src/cryptools/he/cheetahtools/core/types.cc"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/cheetahtools/core/util",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/cheetahtools -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/cheetah-core-utils.dir/math.cc.o -c /home/PrivSphere/src/cryptools/he/cheetahtools/core/util/math.cc",
+  "file": "/home/PrivSphere/src/cryptools/he/cheetahtools/core/util/math.cc"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/cheetahtools/core/util",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/cheetahtools -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/cheetah-core-utils.dir/seal.cc.o -c /home/PrivSphere/src/cryptools/he/cheetahtools/core/util/seal.cc",
+  "file": "/home/PrivSphere/src/cryptools/he/cheetahtools/core/util/seal.cc"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/nexustools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/nexus-tools.dir/bootstrapping.cpp.o -c /home/PrivSphere/src/cryptools/he/nexustools/bootstrapping.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/nexustools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/nexus-tools.dir/gelu.cpp.o -c /home/PrivSphere/src/cryptools/he/nexustools/gelu.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexustools/gelu.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/nexustools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/nexus-tools.dir/layer_norm.cpp.o -c /home/PrivSphere/src/cryptools/he/nexustools/layer_norm.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexustools/layer_norm.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/nexustools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/nexus-tools.dir/ckks_evaluator.cpp.o -c /home/PrivSphere/src/cryptools/he/nexustools/ckks_evaluator.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexustools/ckks_evaluator.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/nexustools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/nexus-tools.dir/softmax.cpp.o -c /home/PrivSphere/src/cryptools/he/nexustools/softmax.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexustools/softmax.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/nexustools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/nexus-tools.dir/matrix_mul.cpp.o -c /home/PrivSphere/src/cryptools/he/nexustools/matrix_mul.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexustools/matrix_mul.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/nexustools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/nexus-tools.dir/argmax.cpp.o -c /home/PrivSphere/src/cryptools/he/nexustools/argmax.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexustools/argmax.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/nexustools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/nexus-tools.dir/encryptionparams.cpp.o -c /home/PrivSphere/src/cryptools/he/nexustools/encryptionparams.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexustools/encryptionparams.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/nexustools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/nexus-tools.dir/evaluator.cpp.o -c /home/PrivSphere/src/cryptools/he/nexustools/evaluator.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexustools/evaluator.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/nexustools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/nexus-tools.dir/bootstrapping/common/Choosemax.cpp.o -c /home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common/Choosemax.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common/Choosemax.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/nexustools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/nexus-tools.dir/bootstrapping/common/MinicompFunc.cpp.o -c /home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common/MinicompFunc.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common/MinicompFunc.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/nexustools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/nexus-tools.dir/bootstrapping/common/MinicompRemez.cpp.o -c /home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common/MinicompRemez.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common/MinicompRemez.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/nexustools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/nexus-tools.dir/bootstrapping/common/Point.cpp.o -c /home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common/Point.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common/Point.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/nexustools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/nexus-tools.dir/bootstrapping/common/PolyUpdate.cpp.o -c /home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common/PolyUpdate.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common/PolyUpdate.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/nexustools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/nexus-tools.dir/bootstrapping/common/func.cpp.o -c /home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common/func.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common/func.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/nexustools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/nexus-tools.dir/bootstrapping/common/Polynomial.cpp.o -c /home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common/Polynomial.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common/Polynomial.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/nexustools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/nexus-tools.dir/bootstrapping/common/Remez.cpp.o -c /home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common/Remez.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common/Remez.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/nexustools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/nexus-tools.dir/bootstrapping/common/RemezApp.cpp.o -c /home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common/RemezApp.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common/RemezApp.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/nexustools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/nexus-tools.dir/bootstrapping/Bootstrapper.cpp.o -c /home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/Bootstrapper.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/Bootstrapper.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/cryptools/he/nexustools",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -std=gnu++17 -o CMakeFiles/nexus-tools.dir/bootstrapping/ModularReducer.cpp.o -c /home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/ModularReducer.cpp",
+  "file": "/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/ModularReducer.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/neuralnet",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src/protocols -I/home/PrivSphere/src -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/basetool -I/home/PrivSphere/src/cryptools/ot -I/home/PrivSphere/src/cryptools/emp -I/home/PrivSphere/src/cryptools/he -I/home/PrivSphere/src/cryptools/he/cheetahtools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -I/home/PrivSphere/src/cryptools/ss -isystem /home/PrivSphere/extern/eigen -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -maes -msse4.1 -mavx -mavx2 -faligned-new -std=c++17 -O3 -Wno-deprecated-declarations -mrdseed -std=gnu++17 -o CMakeFiles/PrivaSphere-nn.dir/simplenet.cpp.o -c /home/PrivSphere/src/neuralnet/simplenet.cpp",
+  "file": "/home/PrivSphere/src/neuralnet/simplenet.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/src/protocols",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/basetool -I/home/PrivSphere/src/cryptools/ot -I/home/PrivSphere/src/cryptools/emp -I/home/PrivSphere/src/cryptools/he -I/home/PrivSphere/src/cryptools/he/cheetahtools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -I/home/PrivSphere/src/cryptools/ss -isystem /home/PrivSphere/extern/eigen -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -maes -msse4.1 -mavx -mavx2 -faligned-new -std=c++17 -O3 -Wno-deprecated-declarations -mrdseed -std=gnu++17 -o CMakeFiles/PrivaSphere-protocols.dir/protocols.cpp.o -c /home/PrivSphere/src/protocols/protocols.cpp",
+  "file": "/home/PrivSphere/src/protocols/protocols.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/tests/base_tools_test",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/basetool -I/home/PrivSphere/src/cryptools/ot -I/home/PrivSphere/src/cryptools/emp -I/home/PrivSphere/src/cryptools/he -I/home/PrivSphere/src/cryptools/he/cheetahtools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -I/home/PrivSphere/src/cryptools/ss -I/home/PrivSphere/src/neuralnet -I/home/PrivSphere/src/protocols -isystem /home/PrivSphere/extern/eigen -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -maes -msse4.1 -mavx -mavx2 -faligned-new -std=c++17 -O3 -Wno-deprecated-declarations -mrdseed -std=gnu++17 -o CMakeFiles/fix_comm.dir/fixed_comm_test.cpp.o -c /home/PrivSphere/tests/base_tools_test/fixed_comm_test.cpp",
+  "file": "/home/PrivSphere/tests/base_tools_test/fixed_comm_test.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/tests/base_tools_test",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/basetool -I/home/PrivSphere/src/cryptools/ot -I/home/PrivSphere/src/cryptools/emp -I/home/PrivSphere/src/cryptools/he -I/home/PrivSphere/src/cryptools/he/cheetahtools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -I/home/PrivSphere/src/cryptools/ss -I/home/PrivSphere/src/neuralnet -I/home/PrivSphere/src/protocols -isystem /home/PrivSphere/extern/eigen -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -maes -msse4.1 -mavx -mavx2 -faligned-new -std=c++17 -O3 -Wno-deprecated-declarations -mrdseed -std=gnu++17 -o CMakeFiles/field_data.dir/field_data_test.cpp.o -c /home/PrivSphere/tests/base_tools_test/field_data_test.cpp",
+  "file": "/home/PrivSphere/tests/base_tools_test/field_data_test.cpp"
+},
+{
+  "directory": "/home/PrivSphere/build/tests/base_tools_test",
+  "command": "/usr/bin/g++  -I/home/PrivSphere/src -I/home/PrivSphere/src/cryptools -I/home/PrivSphere/src/cryptools/basetool -I/home/PrivSphere/src/cryptools/ot -I/home/PrivSphere/src/cryptools/emp -I/home/PrivSphere/src/cryptools/he -I/home/PrivSphere/src/cryptools/he/cheetahtools -I/home/PrivSphere/src/cryptools/he/nexustools -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping/common -I/home/PrivSphere/src/cryptools/he/nexustools/bootstrapping -I/home/PrivSphere/src/cryptools/ss -I/home/PrivSphere/src/neuralnet -I/home/PrivSphere/src/protocols -isystem /home/PrivSphere/extern/eigen -isystem /home/PrivSphere/extern/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/native/src -isystem /home/PrivSphere/build/SEAL/thirdparty/msgsl-src/include -pthread -maes -msse4.1 -mavx -mavx2 -faligned-new -std=c++17 -O3 -Wno-deprecated-declarations -mrdseed -std=gnu++17 -o CMakeFiles/fix_nexus.dir/fixed_nexus_test.cpp.o -c /home/PrivSphere/tests/base_tools_test/fixed_nexus_test.cpp",
+  "file": "/home/PrivSphere/tests/base_tools_test/fixed_nexus_test.cpp"
+}
+]

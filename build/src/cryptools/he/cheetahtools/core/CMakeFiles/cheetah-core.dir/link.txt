@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../../../lib/libcheetah-core.a "CMakeFiles/cheetah-core.dir/logging.cc.o" "CMakeFiles/cheetah-core.dir/types.cc.o"
+/usr/bin/ranlib ../../../../../lib/libcheetah-core.a

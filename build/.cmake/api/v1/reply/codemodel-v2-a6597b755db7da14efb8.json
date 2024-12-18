@@ -1,0 +1,432 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						17
+					],
+					"jsonFile" : "directory-.-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "src",
+					"childIndexes" : 
+					[
+						2,
+						3,
+						15,
+						16
+					],
+					"jsonFile" : "directory-src-b6cf2213fc5053b67c22.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src"
+				},
+				{
+					"build" : "src/costmodel",
+					"jsonFile" : "directory-src.costmodel-b9d5b85edee349277a44.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/costmodel"
+				},
+				{
+					"build" : "src/cryptools",
+					"childIndexes" : 
+					[
+						4,
+						5,
+						12,
+						13,
+						14
+					],
+					"jsonFile" : "directory-src.cryptools-f345f3c7255bb68ce7cb.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/cryptools"
+				},
+				{
+					"build" : "src/cryptools/ss",
+					"jsonFile" : "directory-src.cryptools.ss-bbdd8bbe197e56f26ab0.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 0,
+					"source" : "src/cryptools/ss",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "src/cryptools/he",
+					"childIndexes" : 
+					[
+						6,
+						9
+					],
+					"jsonFile" : "directory-src.cryptools.he-7d2e4cdc34aa1f3c55a1.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 0,
+					"source" : "src/cryptools/he",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "src/cryptools/he/cheetahtools",
+					"childIndexes" : 
+					[
+						7
+					],
+					"jsonFile" : "directory-src.cryptools.he.cheetahtools-0645895e9f35e9743125.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 5,
+					"projectIndex" : 0,
+					"source" : "src/cryptools/he/cheetahtools",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "src/cryptools/he/cheetahtools/core",
+					"childIndexes" : 
+					[
+						8
+					],
+					"jsonFile" : "directory-src.cryptools.he.cheetahtools.core-79f4e47f1cfcfd5374bd.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 6,
+					"projectIndex" : 0,
+					"source" : "src/cryptools/he/cheetahtools/core",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "src/cryptools/he/cheetahtools/core/util",
+					"jsonFile" : "directory-src.cryptools.he.cheetahtools.core.util-b7f6f059289481750731.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 7,
+					"projectIndex" : 0,
+					"source" : "src/cryptools/he/cheetahtools/core/util",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "src/cryptools/he/nexustools",
+					"childIndexes" : 
+					[
+						10,
+						11
+					],
+					"jsonFile" : "directory-src.cryptools.he.nexustools-ef5dda5dbe4239d81bc0.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 5,
+					"projectIndex" : 0,
+					"source" : "src/cryptools/he/nexustools",
+					"targetIndexes" : 
+					[
+						10
+					]
+				},
+				{
+					"build" : "src/cryptools/he/nexustools/bootstrapping/common",
+					"jsonFile" : "directory-src.cryptools.he.nexustools.bootstrapping.common-ffc3510674f1d99ceddf.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 9,
+					"projectIndex" : 0,
+					"source" : "src/cryptools/he/nexustools/bootstrapping/common"
+				},
+				{
+					"build" : "src/cryptools/he/nexustools/bootstrapping",
+					"jsonFile" : "directory-src.cryptools.he.nexustools.bootstrapping-83c2ace98b16d310adfd.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 9,
+					"projectIndex" : 0,
+					"source" : "src/cryptools/he/nexustools/bootstrapping"
+				},
+				{
+					"build" : "src/cryptools/ot",
+					"jsonFile" : "directory-src.cryptools.ot-0a3a6ec6486d310cabe8.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 0,
+					"source" : "src/cryptools/ot"
+				},
+				{
+					"build" : "src/cryptools/emp",
+					"jsonFile" : "directory-src.cryptools.emp-2fa0be5b66897212a564.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 0,
+					"source" : "src/cryptools/emp"
+				},
+				{
+					"build" : "src/cryptools/basetool",
+					"jsonFile" : "directory-src.cryptools.basetool-a5c20e9a336bef0db8bb.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 0,
+					"source" : "src/cryptools/basetool"
+				},
+				{
+					"build" : "src/neuralnet",
+					"jsonFile" : "directory-src.neuralnet-7f218f7d255b5181bac6.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/neuralnet",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "src/protocols",
+					"jsonFile" : "directory-src.protocols-1378596311e26ede3f90.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/protocols",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "tests",
+					"childIndexes" : 
+					[
+						18
+					],
+					"jsonFile" : "directory-tests-b01f6abb0ab61427ef3b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "tests"
+				},
+				{
+					"build" : "tests/base_tools_test",
+					"jsonFile" : "directory-tests.base_tools_test-5c57bc34fdc29263503d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 17,
+					"projectIndex" : 0,
+					"source" : "tests/base_tools_test",
+					"targetIndexes" : 
+					[
+						7,
+						8,
+						9
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18
+					],
+					"name" : "PrivaSphere",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 4,
+					"id" : "PrivaSphere-fp::@a3db02aa1717327b42ba",
+					"jsonFile" : "target-PrivaSphere-fp-a0ef61d700434cfe0990.json",
+					"name" : "PrivaSphere-fp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "PrivaSphere-he::@ab933131ae80046d8ba2",
+					"jsonFile" : "target-PrivaSphere-he-83afa3c31e7a8e0848f4.json",
+					"name" : "PrivaSphere-he",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 15,
+					"id" : "PrivaSphere-nn::@d457f10fc62aba171b09",
+					"jsonFile" : "target-PrivaSphere-nn-269d81d92a5ab26a8902.json",
+					"name" : "PrivaSphere-nn",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 16,
+					"id" : "PrivaSphere-protocols::@150dd677e6642579c602",
+					"jsonFile" : "target-PrivaSphere-protocols-9ab330c270788b9b9cb5.json",
+					"name" : "PrivaSphere-protocols",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 7,
+					"id" : "cheetah-core::@9d995d5b813b9c160893",
+					"jsonFile" : "target-cheetah-core-069beb788e9d62888df7.json",
+					"name" : "cheetah-core",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 8,
+					"id" : "cheetah-core-utils::@332d4c9545bf045d884b",
+					"jsonFile" : "target-cheetah-core-utils-998d7fbbfd95a280c0d0.json",
+					"name" : "cheetah-core-utils",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "cheetah-tools::@9f748678098feef17b05",
+					"jsonFile" : "target-cheetah-tools-e10504c3f0098dbd23eb.json",
+					"name" : "cheetah-tools",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 18,
+					"id" : "field_data::@243d32ae5330a0828b8d",
+					"jsonFile" : "target-field_data-338910cdd082d637fc53.json",
+					"name" : "field_data",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 18,
+					"id" : "fix_comm::@243d32ae5330a0828b8d",
+					"jsonFile" : "target-fix_comm-3dc605e9278a0b439fd6.json",
+					"name" : "fix_comm",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 18,
+					"id" : "fix_nexus::@243d32ae5330a0828b8d",
+					"jsonFile" : "target-fix_nexus-43af8a833572e65164d1.json",
+					"name" : "fix_nexus",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 9,
+					"id" : "nexus-tools::@1af6efad008cfcec5c20",
+					"jsonFile" : "target-nexus-tools-c0f569ef751bbdcaef5a.json",
+					"name" : "nexus-tools",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/PrivSphere/build",
+		"source" : "/home/PrivSphere"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}

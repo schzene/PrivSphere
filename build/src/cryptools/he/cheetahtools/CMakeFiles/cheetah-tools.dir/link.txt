@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../../lib/libcheetah-tools.a "CMakeFiles/cheetah-tools.dir/cheetah-api.cpp.o" "CMakeFiles/cheetah-tools.dir/hom_bn_ss.cc.o" "CMakeFiles/cheetah-tools.dir/hom_conv2d_ss.cc.o" "CMakeFiles/cheetah-tools.dir/hom_fc_ss.cc.o" "CMakeFiles/cheetah-tools.dir/shape_inference.cc.o" "CMakeFiles/cheetah-tools.dir/tensor_encoder.cc.o" "CMakeFiles/cheetah-tools.dir/tensor_shape.cc.o"
+/usr/bin/ranlib ../../../../lib/libcheetah-tools.a

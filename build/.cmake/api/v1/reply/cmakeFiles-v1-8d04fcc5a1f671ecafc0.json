@@ -1,0 +1,457 @@
+{
+	"inputs" : 
+	[
+		{
+			"path" : "CMakeLists.txt"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/CMakeFiles/3.23.3/CMakeSystem.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/CMakeFiles/3.23.3/CMakeCCompiler.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/CMakeFiles/3.23.3/CMakeCXXCompiler.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CMakeGenericSystem.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/Platform/Linux.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/Platform/UnixPaths.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CMakeCInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/Compiler/GNU-C.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/Compiler/GNU.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/Platform/Linux-GNU-C.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/Platform/Linux-GNU.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CMakeCXXInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/Compiler/GNU-CXX.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/Compiler/GNU.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/Platform/Linux-GNU-CXX.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/Platform/Linux-GNU.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/SEAL/cmake/SEALConfigVersion.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/SEAL/cmake/SEALConfig.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CMakeFindDependencyMacro.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/FindThreads.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CheckLibraryExists.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CheckIncludeFile.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CheckCSourceCompiles.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/Internal/CheckSourceCompiles.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/SEAL/cmake/SEALTargets.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/eigen/Eigen3ConfigVersion.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/eigen/Eigen3Config.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/eigen/Eigen3Targets.cmake"
+		},
+		{
+			"path" : "src/CMakeLists.txt"
+		},
+		{
+			"path" : "src/costmodel/CMakeLists.txt"
+		},
+		{
+			"path" : "src/cryptools/CMakeLists.txt"
+		},
+		{
+			"path" : "src/cryptools/ss/CMakeLists.txt"
+		},
+		{
+			"path" : "src/cryptools/he/CMakeLists.txt"
+		},
+		{
+			"path" : "src/cryptools/he/cheetahtools/CMakeLists.txt"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/SEAL/cmake/SEALConfigVersion.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/SEAL/cmake/SEALConfig.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CMakeFindDependencyMacro.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/FindThreads.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CheckLibraryExists.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CheckIncludeFile.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CheckCSourceCompiles.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/SEAL/cmake/SEALTargets.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/eigen/Eigen3ConfigVersion.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/eigen/Eigen3Config.cmake"
+		},
+		{
+			"path" : "src/cryptools/he/cheetahtools/core/CMakeLists.txt"
+		},
+		{
+			"path" : "src/cryptools/he/cheetahtools/core/util/CMakeLists.txt"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/SEAL/cmake/SEALConfigVersion.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/SEAL/cmake/SEALConfig.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CMakeFindDependencyMacro.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/FindThreads.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CheckLibraryExists.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CheckIncludeFile.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CheckCSourceCompiles.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/SEAL/cmake/SEALTargets.cmake"
+		},
+		{
+			"path" : "src/cryptools/he/nexustools/CMakeLists.txt"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/SEAL/cmake/SEALConfigVersion.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/SEAL/cmake/SEALConfig.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CMakeFindDependencyMacro.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/FindThreads.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CheckLibraryExists.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CheckIncludeFile.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/CheckCSourceCompiles.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/SEAL/cmake/SEALTargets.cmake"
+		},
+		{
+			"path" : "src/cryptools/he/nexustools/bootstrapping/common/CMakeLists.txt"
+		},
+		{
+			"path" : "src/cryptools/he/nexustools/bootstrapping/CMakeLists.txt"
+		},
+		{
+			"path" : "src/cryptools/ot/CMakeLists.txt"
+		},
+		{
+			"path" : "src/cryptools/emp/CMakeLists.txt"
+		},
+		{
+			"path" : "src/cryptools/emp/cmake/source_of_randomness.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/FindOpenSSL.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/FindPkgConfig.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"path" : "src/cryptools/emp/cmake/FindGMP.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/root/cmake-3.23.3-linux-x86_64/share/cmake-3.23/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"path" : "src/cryptools/basetool/CMakeLists.txt"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/eigen/Eigen3ConfigVersion.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "build/eigen/Eigen3Config.cmake"
+		},
+		{
+			"path" : "src/neuralnet/CMakeLists.txt"
+		},
+		{
+			"path" : "src/protocols/CMakeLists.txt"
+		},
+		{
+			"path" : "tests/CMakeLists.txt"
+		},
+		{
+			"path" : "tests/base_tools_test/CMakeLists.txt"
+		}
+	],
+	"kind" : "cmakeFiles",
+	"paths" : 
+	{
+		"build" : "/home/PrivSphere/build",
+		"source" : "/home/PrivSphere"
+	},
+	"version" : 
+	{
+		"major" : 1,
+		"minor" : 0
+	}
+}

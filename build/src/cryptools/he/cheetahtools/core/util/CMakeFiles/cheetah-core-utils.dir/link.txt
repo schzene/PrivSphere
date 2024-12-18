@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../../../../lib/libcheetah-core-utils.a "CMakeFiles/cheetah-core-utils.dir/math.cc.o" "CMakeFiles/cheetah-core-utils.dir/seal.cc.o"
+/usr/bin/ranlib ../../../../../../lib/libcheetah-core-utils.a
