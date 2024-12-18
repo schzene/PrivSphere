@@ -19,9 +19,6 @@
 #include "op.h"
 #include "softmax.h"
 
-#include "encryptionparams.h"
-#include "evaluator.h"
-
 using namespace std;
 using namespace seal;
 using namespace seal::util;
@@ -70,7 +67,7 @@ private:
 
     Encryptor* encryptor;
     CKKSEncoder* encoder;
-    nexus::seal_bs::Evaluator* evaluator;
+    Evaluator* evaluator;
     Decryptor* decryptor;
 
     CKKSEvaluator* ckks_evaluator;

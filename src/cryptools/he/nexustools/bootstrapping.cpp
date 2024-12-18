@@ -1,4 +1,5 @@
 #include <NTL/RR.h>
+#include <seal/seal.h>
 
 #include <chrono>
 #include <iostream>
@@ -6,7 +7,6 @@
 
 #include "Bootstrapper.h"
 #include "ckks_evaluator.h"
-#include "encryptionparams.h"
 
 using namespace std;
 using namespace seal;
@@ -65,7 +65,7 @@ int main() {
   coeff_bit_vec.push_back(log_special_prime);
 
   cout << "Setting Parameters..." << endl;
-  nexus::seal_bs::EncryptionParameters parms(scheme_type::ckks);
+  EncryptionParameters parms(scheme_type::ckks);
   double scale = pow(2.0, logp);
   size_t poly_modulus_degree = (size_t)(1 << logN);
   parms.set_poly_modulus_degree(poly_modulus_degree);
@@ -85,7 +85,7 @@ int main() {
 
   CKKSEncoder encoder(context);
   Encryptor encryptor(context, public_key);
-  seal_bs::Evaluator evaluator(context, encoder);
+  Evaluator evaluator(context, encoder);
   Decryptor decryptor(context, secret_key);
   size_t slot_count = encoder.slot_count();
 
