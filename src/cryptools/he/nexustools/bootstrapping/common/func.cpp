@@ -224,7 +224,7 @@ void rotation(int logslot, int Nh, int shiftcount, const vector<complex<double>>
   }
 }
 
-void make_modulus_equal(shared_ptr<SEALContext> &context, Evaluator &evaluator, double scale, Ciphertext &cipher1, Ciphertext &cipher2, Ciphertext &rtncipher1, Ciphertext &rtncipher2) {
+void make_modulus_equal(shared_ptr<SEALContext> &context, nexus::seal_bs::Evaluator &evaluator, double scale, Ciphertext &cipher1, Ciphertext &cipher2, Ciphertext &rtncipher1, Ciphertext &rtncipher2) {
   size_t level1 = context->get_context_data(cipher1.parms_id())->chain_index();
   size_t level2 = context->get_context_data(cipher2.parms_id())->chain_index();
   if (level1 < level2) {

@@ -15,7 +15,7 @@ Bootstrapper::Bootstrapper(
     CKKSEncoder &_encoder,
     Encryptor &_encryptor,
     Decryptor &_decryptor,
-    Evaluator &_evaluator,
+    nexus::seal_bs::Evaluator &_evaluator,
     RelinKeys &_relin_keys,
     GaloisKeys &_gal_keys)
     : loge(_loge), logn(_logn), logNh(_logNh), L(_L), final_scale(_final_scale), boundary_K(_boundary_K), sin_cos_deg(_sin_cos_deg), scale_factor(_scale_factor), inverse_deg(_inverse_deg), context(_context), keygen(_keygen), encoder(_encoder), encryptor(_encryptor), decryptor(_decryptor), evaluator(_evaluator), relin_keys(_relin_keys), gal_keys(_gal_keys) {

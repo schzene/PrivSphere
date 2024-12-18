@@ -4,7 +4,7 @@ ModularReducer::ModularReducer(long _boundary_K, double _log_width, long _deg, l
                                SEALContext &_context,
                                CKKSEncoder &_encoder,
                                Encryptor &_encryptor,
-                               Evaluator &_evaluator,
+                               nexus::seal_bs::Evaluator &_evaluator,
                                RelinKeys &_relin_keys,
                                Decryptor &_decryptor) : boundary_K(_boundary_K), log_width(_log_width), deg(_deg), num_double_formula(_num_double_formula), inverse_deg(_inverse_deg), context(_context), encoder(_encoder), encryptor(_encryptor), evaluator(_evaluator), relin_keys(_relin_keys), decryptor(_decryptor) {
   inverse_log_width = -log2(sin(2 * M_PI * pow(2.0, -log_width)));

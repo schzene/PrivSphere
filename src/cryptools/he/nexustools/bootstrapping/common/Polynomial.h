@@ -13,8 +13,6 @@
 
 using namespace std;
 using namespace NTL;
-using namespace seal;
-using namespace seal::util;
 
 namespace boot {
 class Polynomial {
@@ -52,7 +50,7 @@ class Polynomial {
   void read_heap_from_file(ifstream &in);
 
   // void homomorphic_poly_evaluation(SEALContext &context, CKKSEncoder &encoder, Encryptor &encryptor, ScaleInvEvaluator &evaluator, RelinKeys &relin_keys, Ciphertext &rtn, Ciphertext &cipher, Decryptor &decryptor);
-  void homomorphic_poly_evaluation(SEALContext &context, CKKSEncoder &encoder, Encryptor &encryptor, Evaluator &evaluator, RelinKeys &relin_keys, Ciphertext &rtn, Ciphertext &cipher, Decryptor &decryptor);
+  void homomorphic_poly_evaluation(SEALContext &context, CKKSEncoder &encoder, Encryptor &encryptor, nexus::seal_bs::Evaluator &evaluator, RelinKeys &relin_keys, Ciphertext &rtn, Ciphertext &cipher, Decryptor &decryptor);
 };
 
 void mul(Polynomial &rtn, Polynomial &a, Polynomial &b);

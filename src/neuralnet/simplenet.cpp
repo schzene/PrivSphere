@@ -1,14 +1,15 @@
 #include "simplenet.h"
+
 #include "config.h"
 #include "neuralnet/simplenet-config.h"
 
-SimpleNetBlock::SimpleNetBlock(unsigned int _party, size_t num_feature, size_t comm_dim, size_t output_dim)
+SimpleNetBlock::SimpleNetBlock(unsigned int _party, NetIO* io, size_t num_feature, size_t comm_dim, size_t output_dim)
     : party(_party) {
     load_data(w.HEData, num_feature, comm_dim, output_dim);
     load_data(b, num_feature, output_dim);
 
-    linear = new Linear(party, nullptr);
-    gelu   = new GeLU(party, nullptr);
+    linear = new Linear(party, io);
+    gelu   = new GeLU(party, io);
 }
 
 SimpleNetBlock::~SimpleNetBlock() {
@@ -29,10 +30,10 @@ void SimpleNetBlock::forward(const Data& input, Data& output) {
     convert(party, gelu, MPCType::HE, g_temp, output);
 }
 
-SimpleNet::SimpleNet(unsigned int party, unsigned num_feature, unsigned comm_dim, unsigned output_dim) {
-    block1 = new SimpleNetBlock(party, num_feature, comm_dim, comm_dim);
-    block2 = new SimpleNetBlock(party, num_feature, comm_dim, comm_dim);
-    block3 = new SimpleNetBlock(party, num_feature, comm_dim, output_dim);
+SimpleNet::SimpleNet(unsigned int party, NetIO* io, unsigned num_feature, unsigned comm_dim, unsigned output_dim) {
+    block1 = new SimpleNetBlock(party, io, num_feature, comm_dim, comm_dim);
+    block2 = new SimpleNetBlock(party, io, num_feature, comm_dim, comm_dim);
+    block3 = new SimpleNetBlock(party, io, num_feature, comm_dim, output_dim);
 }
 
 SimpleNet::~SimpleNet() {

@@ -252,7 +252,7 @@ void Polynomial::read_heap_from_file(ifstream &in) {
 }
 
 // void Polynomial::homomorphic_poly_evaluation(SEALContext &context, CKKSEncoder &encoder, Encryptor &encryptor, ScaleInvEvaluator &evaluator, RelinKeys &relin_keys, Ciphertext &rtn, Ciphertext &cipher, Decryptor &decryptor) {
-void Polynomial::homomorphic_poly_evaluation(SEALContext &context, CKKSEncoder &encoder, Encryptor &encryptor, Evaluator &evaluator, RelinKeys &relin_keys, Ciphertext &rtn, Ciphertext &cipher, Decryptor &decryptor) {
+void Polynomial::homomorphic_poly_evaluation(SEALContext &context, CKKSEncoder &encoder, Encryptor &encryptor, nexus::seal_bs::Evaluator &evaluator, RelinKeys &relin_keys, Ciphertext &rtn, Ciphertext &cipher, Decryptor &decryptor) {
   double zero = 1. / cipher.scale();
   if (deg == 1) {
     // evaluator.multiply_const_scaleinv(cipher, to_double(coeff[1]), rtn);

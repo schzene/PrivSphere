@@ -12,6 +12,7 @@
 
 #include "Point.h"
 #include "seal/seal.h"
+#include "evaluator.h"
 
 using namespace std;
 using namespace NTL;
@@ -43,7 +44,7 @@ void text_to_array(ifstream &in, RR *&array, long n);
 int giantstep(int M);
 void rotation(int logslot, int Nh, int shiftcount, const vector<complex<double>> &vec, vector<complex<double>> &rtnvec);
 
-void make_modulus_equal(shared_ptr<SEALContext> &context, Evaluator &evaluator, double scale, Ciphertext &cipher1, Ciphertext &cipher2, Ciphertext &rtncipher1, Ciphertext &rtncipher2);
+void make_modulus_equal(shared_ptr<SEALContext> &context, nexus::seal_bs::Evaluator &evaluator, double scale, Ciphertext &cipher1, Ciphertext &cipher2, Ciphertext &rtncipher1, Ciphertext &rtncipher2);
 int max_index(double *array, int length);
 void decrypt_and_print(const Ciphertext &cipher, Decryptor &decryptor, CKKSEncoder &encoder, long sparse_slots, size_t front = 5, size_t back = 5);
 void decrypt_and_print_and_max_round(const Ciphertext &cipher, Decryptor &decryptor, CKKSEncoder &encoder, double unit, long sparse_slots, size_t front = 5, size_t back = 5);

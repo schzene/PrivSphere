@@ -27,7 +27,7 @@ class ModularReducer {
   SEALContext &context;
   CKKSEncoder &encoder;
   Encryptor &encryptor;
-  Evaluator &evaluator;
+  nexus::seal_bs::Evaluator &evaluator;
   RelinKeys &relin_keys;
   Decryptor &decryptor;
 
@@ -43,7 +43,7 @@ class ModularReducer {
                  SEALContext &_context,
                  CKKSEncoder &_encoder,
                  Encryptor &_encryptor,
-                 Evaluator &_evaluator,
+                 nexus::seal_bs::Evaluator &_evaluator,
                  RelinKeys &_relin_keys,
                  Decryptor &_decryptor);
 

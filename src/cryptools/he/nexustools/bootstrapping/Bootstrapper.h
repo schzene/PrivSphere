@@ -34,7 +34,7 @@ class Bootstrapper {
   CKKSEncoder &encoder;
   Encryptor &encryptor;
   Decryptor &decryptor;
-  Evaluator &evaluator;
+  nexus::seal_bs::Evaluator &evaluator;
   RelinKeys &relin_keys;
   GaloisKeys &gal_keys;
 
@@ -64,7 +64,7 @@ class Bootstrapper {
       CKKSEncoder &_encoder,
       Encryptor &_encryptor,
       Decryptor &_decryptor,
-      Evaluator &_evaluator,
+      nexus::seal_bs::Evaluator &_evaluator,
       RelinKeys &_relin_keys,
       GaloisKeys &_gal_keys);
 

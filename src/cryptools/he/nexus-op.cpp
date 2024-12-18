@@ -22,7 +22,7 @@ NEXUS_op::NEXUS_op(int party, NetIO* io, unsigned long logN, vector<int> MM_COEF
     long loge         = 10;
 
     poly_modulus_degree = 1 << logN;
-    parms               = new EncryptionParameters(scheme_type::ckks);
+    parms               = new nexus::seal_bs::EncryptionParameters(scheme_type::ckks);
     parms->set_poly_modulus_degree(poly_modulus_degree);
     parms->set_coeff_modulus(CoeffModulus::Create(poly_modulus_degree, MM_COEFF_MODULI));
     context = new SEALContext(*parms, true, sec_level_type::none);
@@ -40,7 +40,7 @@ NEXUS_op::NEXUS_op(int party, NetIO* io, unsigned long logN, vector<int> MM_COEF
 
     encryptor = new Encryptor(*context, public_key);
     encoder   = new CKKSEncoder(*context);
-    evaluator = new Evaluator(*context);
+    evaluator = new nexus::seal_bs::Evaluator(*context, *encoder);
     decryptor = new Decryptor(*context, secret_key);
 
     ckks_evaluator =
