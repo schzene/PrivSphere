@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../../lib/libPrivaSphere-fp.a "CMakeFiles/PrivaSphere-fp.dir/ring-op.cpp.o" "CMakeFiles/PrivaSphere-fp.dir/bool-op.cpp.o"
-/usr/bin/ranlib ../../../lib/libPrivaSphere-fp.a
