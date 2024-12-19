@@ -6,7 +6,6 @@
 #include <vector>
 
 #include "config.h"
-#include "cryptools/he/cheetah-op.h"
 #include "cryptools/he/nexus-op.h"
 
 /**

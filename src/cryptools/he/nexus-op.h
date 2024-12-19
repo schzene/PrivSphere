@@ -11,13 +11,10 @@
 #include <string>
 #include <vector>
 
-#include "argmax.h"
-#include "emp-tool.h"
-#include "gelu.h"
-#include "layer_norm.h"
-#include "matrix_mul.h"
+#include "../emp/emp-tool.h"
+#include "nexus-api.h"
 #include "op.h"
-#include "softmax.h"
+
 
 using namespace std;
 using namespace seal;
@@ -31,22 +28,23 @@ using namespace nexus;
  */
 // "127.0.0.1"
 //  = 12345
-class NEXUS_op: public OP {
+class NEXUS_op : public OP {
 public:
     std::vector<std::string> OPs = {"fc", "argmax", "gelu", "ln", "softmax"};
-    static const MPCType type = MPCType::NEXUS;
+    static const MPCType type    = MPCType::NEXUS;
     // CheetahLinear* linear;
     typedef vector<vector<vector<double>>> OPType;
 
-    NEXUS_op(int party, NetIO* io, unsigned long logN = 13, vector<int> MM_COEFF_MODULI = {60, 40, 60},
-             double scale = pow(2.0, 40));
+    NEXUS_op(int party, NetIO* io, unsigned long logN = 13,
+             vector<int> COEFF_MODULI = {58, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+                                         40, 40, 40, 40, 40, 40, 40, 40, 40, 58},
+             double scale             = pow(2.0, 40));
 
     ~NEXUS_op();
 
-    void fc(Data& input, const Data& weight,
-            Data& output);
+    void fc(Data& input, const Data& weight, Data& output);
 
-    void argmax();
+    void argmax(const Data& input, Data& outpu);
 
     void gelu(const Data& input, Data& output);
 
@@ -55,6 +53,8 @@ public:
     void softmax(const Data& input, Data& output);
 
 private:
+    unsigned long logN;
+
     size_t poly_modulus_degree, scale;
     EncryptionParameters* parms;
     SEALContext* context;
@@ -63,14 +63,14 @@ private:
     PublicKey public_key;
     RelinKeys relin_keys;
 
-    GaloisKeys galois_keys;
+    GaloisKeys mm_galois_keys, galois_keys;
 
     Encryptor* encryptor;
     CKKSEncoder* encoder;
     Evaluator* evaluator;
     Decryptor* decryptor;
 
-    CKKSEvaluator* ckks_evaluator;
+    CKKSEvaluator *ckks_evaluator, *mm_ckks_evaluator;
     Bootstrapper* bootstrapper;
 
     MMEvaluator* mme;
