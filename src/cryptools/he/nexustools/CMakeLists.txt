@@ -26,5 +26,5 @@ target_link_libraries(nexus-tools
     ntl gmp m pthread SEAL-bs::seal
 )
 
-add_executable(main main.cpp)
-target_link_libraries(main nexus-tools)
+# add_executable(main main.cpp)
+# target_link_libraries(main nexus-tools)

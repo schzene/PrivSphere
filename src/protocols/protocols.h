@@ -7,6 +7,7 @@
 
 #include "config.h"
 #include "cryptools/he/nexus-op.h"
+#include "cryptools/ss/ss.h"
 
 /**
  * @brief Convert input 'i' of type 's' to output 'o' of type 't'
@@ -58,8 +59,8 @@ inline void convert(unsigned party, const OP* s, const MPCType t, const Data& i,
     convert(party, s->type, t, i, o);
 }
 
-void load_data(vector<vector<vector<uint64_t>>> A, size_t dim1, size_t dim2, size_t dim3);
-void load_data(vector<vector<uint64_t>> B, size_t dim1, size_t dim2);
+void load_data(vector<vector<vector<uint64_t>>>& A, size_t dim1, size_t dim2, size_t dim3);
+void load_data(vector<vector<uint64_t>>& B, size_t dim1, size_t dim2);
 // using std::vector;
 
 // class Linear {

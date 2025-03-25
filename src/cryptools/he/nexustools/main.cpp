@@ -23,7 +23,7 @@ void MM_test();
 void argmax_test();
 
 // Choose a test target here:
-int TEST_TARGET_IDX = 4;
+int TEST_TARGET_IDX = 1;
 
 vector<string> TEST_TARGETS = {"MatMul", "Argmax", "GELU", "LayerNorm", "SoftMax"};
 vector<int> COEFF_MODULI = {58, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 58};
@@ -301,7 +301,7 @@ void argmax_test() {
   }
 
   auto start = high_resolution_clock::now();
-  argmax_evaluator.argmax(cipher_input, cipher_output, argmax_input_size);
+  argmax_evaluator.argmax(cipher_input, cipher_output, argmax_input_size);  // 3次bootstrapping
   auto end = high_resolution_clock::now();
 
   cout << "[Argmax] 32768 takes: " << duration_cast<milliseconds>(end - start).count() << " milliseconds"

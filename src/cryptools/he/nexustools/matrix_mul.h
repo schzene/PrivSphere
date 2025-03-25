@@ -27,6 +27,8 @@ class MMEvaluator {
  */
   void matrix_mul(vector<vector<double>> &x, vector<vector<double>> &y, vector<Ciphertext> &res);
 
+  void matrix_mul(vector<vector<double>> &x, vector<vector<double>> &y, size_t dim3, vector<Ciphertext> &res);
+
   std::vector<std::vector<double>> readMatrix(const std::string &filename, int rows, int cols);
   std::vector<std::vector<double>> transposeMatrix(const std::vector<std::vector<double>> &matrix);
 };

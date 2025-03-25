@@ -7,7 +7,10 @@ using namespace nisl;
 int dim[4][3];
 int party, port = 32000, d = 0;
 string address = "127.0.0.1";
-
+#ifdef NID_caseIgnoreIA5StringSyntax
+#    ifdef NID_caseIgnoreIA5StringSyntax
+#    endif
+#endif
 int main(int argc, char** argv) {
     ArgMapping amap;
     amap.arg("r", party, "Role of party: ALICE = 1; BOB = 2");
@@ -19,28 +22,30 @@ int main(int argc, char** argv) {
     if (party == ALICE) {
         std::cout << "Party: ALICE"
                   << "\n";
-    }
-    else if (party == BOB) {
+    } else if (party == BOB) {
         std::cout << "Party: BOB"
                   << "\n";
     }
 
     int dim1 = 768, dim2 = 64, dim3 = 128;
-    nisl::IOPack* iopack = new nisl::IOPack(party, port, address);
-    nisl::NetIO* io      = iopack->io;
-    uint64_t base_mod    = 2198100901889;
+    // nisl::IOPack* iopack = new nisl::IOPack(party, port, address);
+    // nisl::NetIO* io      = iopack->io;
+    uint64_t base_mod = 2198100901889;
 
-    NEXUS_op* nexusop = new NEXUS_op(party, io);
+    // NEXUS_op* nexusop = new NEXUS_op(party, io);
+    NEXUS_op* nexusop = new NEXUS_op(party, nullptr);
 
     Data myData, dataW;
 
     size_t depth = 4;
-    size_t rows  = 4;
-    size_t cols  = 4;
+    size_t rows = 4;
+    size_t cols = 4;
 
-    myData.NexusData = vector<vector<vector<double>>>(depth, vector<vector<double>>(rows, vector<double>(cols)));
+    myData.NexusData =
+        vector<vector<vector<double>>>(depth, vector<vector<double>>(rows, vector<double>(cols)));
 
-    dataW.NexusData = vector<vector<vector<double>>>(depth, vector<vector<double>>(rows, vector<double>(cols)));
+    dataW.NexusData =
+        vector<vector<vector<double>>>(depth, vector<vector<double>>(rows, vector<double>(cols)));
 
     for (size_t i = 0; i < depth; ++i) {
         for (size_t j = 0; j < rows; ++j) {
@@ -61,7 +66,7 @@ int main(int argc, char** argv) {
         std::cout << endl;
     }
 
-    auto start = iopack->get_comm();
+    // auto start = iopack->get_comm();
     Data out;
     INIT_TIMER
     START_TIMER
@@ -71,9 +76,9 @@ int main(int argc, char** argv) {
     // nexusop->gelu(myData, out);
     // for (int i = 0; i < dim1; i++) {
     //     // cheetahln->fc(input[i], weight, meta, out[i]);
-        
+
     //     // std::cout << "error";
     // }
     STOP_TIMER("fc")
-    std::cout << "comm: " << (iopack->get_comm() - start) / 1024 << "\n";
+    // std::cout << "comm: " << (iopack->get_comm() - start) / 1024 << "\n";
 }

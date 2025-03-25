@@ -11,15 +11,15 @@
 #include <string>
 #include <vector>
 
-#include "../emp/emp-tool.h"
 #include "nexus-api.h"
 #include "op.h"
-
+#include "utils/net_io_channel.h"
 
 using namespace std;
 using namespace seal;
 using namespace seal::util;
 using namespace std::chrono;
+using namespace sci;
 using namespace nisl;
 using namespace nexus;
 
@@ -31,14 +31,13 @@ using namespace nexus;
 class NEXUS_op : public OP {
 public:
     std::vector<std::string> OPs = {"fc", "argmax", "gelu", "ln", "softmax"};
-    static const MPCType type    = MPCType::NEXUS;
     // CheetahLinear* linear;
     typedef vector<vector<vector<double>>> OPType;
 
     NEXUS_op(int party, NetIO* io, unsigned long logN = 13,
              vector<int> COEFF_MODULI = {58, 40, 40, 40, 40, 40, 40, 40, 40, 40,
                                          40, 40, 40, 40, 40, 40, 40, 40, 40, 58},
-             double scale             = pow(2.0, 40));
+             double scale = pow(2.0, 40));
 
     ~NEXUS_op();
 

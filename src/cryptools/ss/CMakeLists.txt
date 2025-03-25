@@ -1,18 +1,17 @@
-add_library(PrivaSphere-fp
-    ring-op.cpp
-    bool-op.cpp
+add_subdirectory(SCI)
+
+add_library(PrivaSphere-ss
+    ss.cpp
 )
 
-target_include_directories(PrivaSphere-fp
-INTERFACE 
-${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(PrivaSphere-ss PUBLIC 
+    ${PROJECT_SOURCE_DIR}/src
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/SCI
+)
 
-
-target_link_libraries(PrivaSphere-fp
-    PUBLIC
-    PrivaSphere-comm
-    PrivaSphere-ot
-    PrivaSphere-baseprot
+target_link_libraries(PrivaSphere-ss PUBLIC
+    SCI-common
 )
 
 

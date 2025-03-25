@@ -1,4 +1,5 @@
 #include "matrix_mul.h"
+#include <seal/plaintext.h>
 
 #include <fstream>
 #include <iostream>
@@ -98,6 +99,17 @@ void MMEvaluator::enc_compress_ciphertext(vector<double> &val, Ciphertext &ct) {
 
   ckks->evaluator->add_plain(zero, p, ct);
 }
+// void MMEvaluator::enc_compress_ciphertext(vector<double> &val, Ciphertext &ct) {
+//   Plaintext zero_pt;
+//   ckks->encoder->encode(std::vector<double>(ckks->N / 2, 0.0), ckks->scale, zero_pt);
+//   Ciphertext zero;
+//   ckks->encryptor->encrypt(zero_pt, zero);
+
+//   Plaintext p;
+//   ckks->encoder->encode(val, ckks->scale, p);
+
+//   ckks->evaluator->add_plain(zero, p, ct);
+// }
 
 vector<Ciphertext> MMEvaluator::expand_ciphertext(const Ciphertext &encrypted, uint32_t m, GaloisKeys &galkey, vector<uint32_t> &galois_elts) {
   uint32_t logm = ceil(log2(m));
@@ -225,6 +237,82 @@ void MMEvaluator::matrix_mul(vector<vector<double>> &x, vector<vector<double>> &
 
     for (int j = 0; j < 768; j++) {
       ckks->evaluator->multiply_plain(b_expanded_cts[i * 768 + j], a_pts[j], temp_cts[j]);
+    }
+
+    res_col_ct.scale() = temp_cts[0].scale();
+    ckks->evaluator->add_many(temp_cts, res_col_ct);
+
+    res_col_ct.scale() *= 4096;
+    res.push_back(res_col_ct);
+  }
+
+  for (auto &ct : res) {
+    while (ct.coeff_modulus_size() > 1) {
+      ckks->evaluator->rescale_to_next_inplace(ct);
+    }
+  }
+
+  vector<seal::seal_byte> rece_bytes(res[0].save_size());
+  auto rece_size = 0;
+  for (auto &ct : res) {
+    rece_size += ct.save(rece_bytes.data(), rece_bytes.size());
+  }
+  cout << rece_size / 1024.0 / 1024.0 << " MB" << endl;
+
+  time_end = high_resolution_clock::now();
+  cout << "Result calculation time: " << duration_cast<seconds>(time_end - time_start).count() << " seconds" << endl;
+}
+
+void MMEvaluator::matrix_mul(vector<vector<double>> &x, vector<vector<double>> &y, size_t dim3, vector<Ciphertext> &res) {
+  size_t dim1 = x.size(), dim2 = x[0].size();
+  chrono::high_resolution_clock::time_point time_start, time_end;
+
+  vector<Plaintext> a_pts;
+  a_pts.reserve(dim2);
+  for (int i = 0; i < dim2; i++) {
+    Plaintext pt;
+    ckks->encoder->encode(x[i], ckks->scale, pt);
+    a_pts.emplace_back(pt);
+  }
+
+  size_t size = y.size();
+  vector<Ciphertext> b_compressed_cts(size);
+  for (int i = 0; i < size; i++) {
+    Ciphertext ct;
+    enc_compress_ciphertext(y[i], ct);
+    b_compressed_cts[i] = ct;
+  }
+
+  vector<seal::seal_byte> ct_bytes(b_compressed_cts[0].save_size());
+  auto send_size = 0;
+  for (auto &ct : b_compressed_cts) {
+    auto ctt = ckks->encryptor->encrypt(a_pts[0]);
+    send_size += ctt.save(ct_bytes.data(), ct_bytes.size());
+  }
+  cout << send_size / 1024.0 / 1024.0 << " MB" << endl;
+
+  time_start = high_resolution_clock::now();
+  vector<Ciphertext> b_expanded_cts;
+
+  for (auto i = 0; i < b_compressed_cts.size(); i++) {
+    vector<Ciphertext> temp_cts = expand_ciphertext(b_compressed_cts[i], ckks->degree, *ckks->galois_keys, ckks->rots);
+    cout << "Expanded ciphertext #" << i + 1 << endl;
+    b_expanded_cts.insert(b_expanded_cts.end(), make_move_iterator(temp_cts.begin()), make_move_iterator(temp_cts.end()));
+  }
+
+  time_end = high_resolution_clock::now();
+  cout << "Expanding time: " << duration_cast<std::chrono::seconds>(time_end - time_start).count() << " seconds"
+       << endl;
+
+  time_start = high_resolution_clock::now();
+  Ciphertext temp;
+
+  for (int i = 0; i < dim3; i++) {
+    Ciphertext res_col_ct;
+    vector<Ciphertext> temp_cts(dim2);
+
+    for (int j = 0; j < dim2; j++) {
+      ckks->evaluator->multiply_plain(b_expanded_cts[i * dim2 + j], a_pts[j], temp_cts[j]);
     }
 
     res_col_ct.scale() = temp_cts[0].scale();

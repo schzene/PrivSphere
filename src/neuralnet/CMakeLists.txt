@@ -1,5 +1,6 @@
 add_library(PrivaSphere-nn
     simplenet.cpp
+    logistic.cpp
 )
  
 target_include_directories(PrivaSphere-nn

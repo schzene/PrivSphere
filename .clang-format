@@ -1,34 +1,9 @@
-
-# https://clang.llvm.org/docs/ClangFormatStyleOptions.html
-# Manual run to reformat a file "foo.cpp": clang-format -i --style=file foo.cpp
-#######################################################################
-BasedOnStyle: Google
-#######################################################################
-Language: Cpp
-# DisableFormat: true
+BasedOnStyle: LLVM
 AccessModifierOffset: -4
-# AlignArrayOfStructures: Right (enable this if clang-format-13 or newer is installed)
+AlignArrayOfStructures: Left
 AlignConsecutiveMacros: true
-AlignConsecutiveAssignments: true
-#AlignConsecutiveDeclarations: true
-AlignEscapedNewlines: Left
-AlignOperands: true
-AllowShortFunctionsOnASingleLine: Empty
-AllowShortIfStatementsOnASingleLine: Never
-AllowShortLambdasOnASingleLine: Inline
-AllowShortLoopsOnASingleLine: false
-BreakBeforeBraces: Custom
-BraceWrapping:
-    BeforeCatch:     true
-    BeforeElse:      true
-BreakBeforeTernaryOperators: false
-BreakStringLiterals: false
-ColumnLimit: 120
-DerivePointerAlignment: false
-#EmptyLineBeforeAccessModifier: true (enable this if clang-format-13 or newer is installed)
-# IndentPPDirectives: BeforeHash
+ColumnLimit: 100
+IndentPPDirectives: AfterHash
 IndentWidth: 4
 PointerAlignment: Left
-ReflowComments: false
-SortIncludes: true
-UseTab: Never
+ReferenceAlignment: Pointer

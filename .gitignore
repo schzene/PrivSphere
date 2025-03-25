@@ -33,6 +33,7 @@
 
 # Build folder
 build
+debug
 
 # cache folder
 *cache

@@ -1,10 +1,8 @@
 include_directories(${CMAKE_CURRENT_LIST_DIR})
 
-add_subdirectory(ss)
 add_subdirectory(he)
-add_subdirectory(ot)
-add_subdirectory(emp)
-add_subdirectory(basetool)
+add_subdirectory(ss)
+add_subdirectory(utils)
 
 add_library(PrivaSphere-cryptools
     INTERFACE
@@ -12,11 +10,9 @@ add_library(PrivaSphere-cryptools
 
 target_link_libraries(PrivaSphere-cryptools
     INTERFACE
-    PrivaSphere-baseprot
-    PrivaSphere-comm
     PrivaSphere-he
-    PrivaSphere-ot
-    PrivaSphere-fp
+    PrivaSphere-ss
+    SCI-utils
 )
 
 target_include_directories(PrivaSphere-cryptools
