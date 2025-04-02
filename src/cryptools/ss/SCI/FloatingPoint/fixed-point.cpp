@@ -303,6 +303,19 @@ FixArray FixOp::mul(const FixArray &x, uint64_t y, int ell, uint8_t *msb_x) {
   return ret;
 }
 
+FixArray FixOp::matmul(int dim1, int dim2, int dim3, const FixArray &x, const FixArray &y, int ell, uint8_t *msb_x, uint8_t *msb_y) {
+  assert(x.size == dim1 * dim2);
+  assert(y.size == dim2 * dim3);
+  assert(x.party != PUBLIC && y.party != PUBLIC);
+  assert(x.signed_ || (x.signed_ == y.signed_));
+  assert(ell >= x.ell && ell >= y.ell && ell <= x.ell + y.ell);
+  assert(ell < 64);
+  FixArray ret(this->party, dim1 * dim3, x.signed_, ell, x.s + y.s);
+  mult->matrix_multiplication(dim1, dim2, dim3, x.data, y.data, ret.data, x.ell, y.ell, ell, 
+                              x.signed_, y.signed_, false, MultMode::None, msb_x, msb_y);
+  return ret;
+}
+
 FixArray FixOp::left_shift(const FixArray &x, const FixArray &s, int ell,
                            int bound, uint8_t *msb_x) {
   assert(x.party != PUBLIC && s.party != PUBLIC);
@@ -1055,6 +1068,145 @@ FixArray FixOp::tanh(const FixArray& x, int l_y, int s_y) {
   return ret;
 }
 
-FixArray FixOp::sqrt(const FixArray& x, int l_y, int s_y, bool recp_sqrt) {
-  assert(x.party != PUBLIC);
+// FixArray FixOp::sqrt(const FixArray& x, int l_y, int s_y, bool recp_sqrt) {
+//   assert(x.party != PUBLIC);
+// }
+
+// 0.3585*((p + 1.353)**2) + 0.344
+// arg1         arg2         arg3
+FixArray FixOp::poly1(const FixArray& p){
+
+  int ell = p.ell;
+  int scale = p.s;
+  
+  BoolArray all_1 = bool_op->input(ALICE, p.size, 1);
+  BoolArray all_0 = bool_op->input(ALICE, p.size, uint8_t(0));
+
+  FixArray arg1 = fix->input(PUBLIC, p.size, uint64_t(1468), true, ell, scale);
+  FixArray arg2 = fix->input(PUBLIC, p.size, uint64_t(5542), true, ell, scale);
+  FixArray arg3 = fix->input(PUBLIC, p.size, uint64_t(1409), true, ell, scale);
+
+  FixArray p_arg2 = this->add(p, arg2);
+
+  FixArray p_arg2_pow2 = this->mul(p_arg2, p_arg2, ell + scale, all_0.data, all_0.data);
+  // Optimization: local truncation
+  p_arg2_pow2 =  this->truncate_reduce(p_arg2_pow2, scale);
+  // p_arg2_pow2 =  this->reduce(p_arg2_pow2, ell);
+  // print_fix(p_arg2_pow2);
+
+  FixArray arg1_p_arg2 = this->mul(p_arg2_pow2, arg1, ell + scale, all_0.data, all_0.data);
+  // Optimization: local truncation
+  arg1_p_arg2 =  this->truncate_reduce(arg1_p_arg2, scale);
+  // arg1_p_arg2 =  this->reduce(arg1_p_arg2, ell);
+  // print_fix(arg1_p_arg2);
+
+  return this->add(arg1_p_arg2, arg3);
+}
+
+std::tuple<FixArray, FixArray> FixOp::exp4(const FixArray &x){
+
+  /*
+  l = np.floor((x / -math.log(2)))
+  p = x + l*math.log(2)
+  fp = poly(p)
+  return fp / (2**l)
+  */
+
+  // print_fix(x);
+
+  int ell = x.ell;
+  int scale = x.s;
+
+  // All 0 and all 1 array for msb arg
+  BoolArray all_0 = bool_op->input(ALICE, x.size, uint8_t(0));
+  BoolArray all_1 = bool_op->input(ALICE, x.size, 1);
+  
+
+  // ln2
+  FixArray ln2 = fix->input(PUBLIC, x.size, uint64_t(2839), true, ell, scale);
+  // print_fix(ln2);
+
+  // inverse of negative ln2
+  FixArray inl = fix->input(PUBLIC, x.size, uint64_t(-5909), true, ell, scale);
+  // print_fix(inl);
+
+  // x / -math.log(2)
+  // Truncate to original scale and bitlength
+  FixArray x_inl = fix->mul(x, inl, ell + scale);
+  // Optimization: local truncation
+  x_inl =  fix->truncate_reduce(x_inl, scale);
+  // x_inl =  fix->reduce(x_inl, ell);
+  // print_fix(x_inl);
+
+  // Get the integer part and scale back
+  FixArray l_short = fix->truncate_reduce(x_inl, scale);
+  FixArray l_short_raw = l_short;
+  FixArray l = fix->scale_up(l_short, ell, scale);
+
+  // l*math.log(2)
+  FixArray l_ln2 = fix->mul(l, ln2, ell+scale, all_0.data, all_0.data);
+  l_ln2 =  fix->truncate_reduce(l_ln2, scale);
+  // l_ln2 =  fix->reduce(l_ln2, ell);
+
+  // Get the decimal part  
+  FixArray p = fix->add(x, l_ln2);
+  // Optimization: We don't need that much bit as p \in (-ln2, 0])
+  p = fix->reduce(p, scale + 2);
+
+  // Polynomial fit
+  FixArray poly_p = fix->poly1(p);
+  poly_p = fix->extend(poly_p, ell, all_0.data);
+
+  l_short.signed_ = false;
+  // Optimization: The polynomial result is within [0, ~0.7)
+  // Thus the upper bound of shift is scale + 1
+
+  FixArray bound = fix->input(PUBLIC, l_short.size, 13, false, l_short.ell, 0);
+  BoolArray gt_bound = fix->GT(l_short, bound);
+  l_short = fix->if_else(gt_bound, bound, l_short);
+
+  FixArray ret = fix->right_shift(poly_p, l_short, scale + 1, all_1.data);
+
+  return make_tuple(ret, l_short_raw);
+}
+
+FixArray FixOp::tree_sum(const vector<FixArray>& x) {
+  int N = x.size();
+  int n = x[0].size;
+  int party = x[0].party;
+  int signed_ = x[0].signed_;
+  int ell = x[0].ell;
+  int s = x[0].s;
+
+  vector<FixArray> x_tr(n);
+  for (int i = 0; i < n; i++) {
+    x_tr[i] = FixArray(party, N, signed_, ell, s);
+    for (int j = 0; j < N; j++) {
+      x_tr[i].data[j] = x[j].data[i];
+    }
+  }
+  int num_cmps_old = n; int num_cmps_curr = n/2;
+  uint64_t* lhs = new uint64_t[N*num_cmps_curr];
+  uint64_t* rhs = new uint64_t[N*num_cmps_curr];
+  while(num_cmps_old > 1) {
+    int odd_num_cmps = num_cmps_old & 1;
+    for (int j = odd_num_cmps; j < num_cmps_old && j + 1 < num_cmps_old; j += 2) {
+      memcpy(lhs + (j/2)*N, x_tr[j].data, N*sizeof(uint64_t));
+      memcpy(rhs + (j/2)*N, x_tr[j + 1].data, N*sizeof(uint64_t));
+    }
+    FixArray lhs_fp = fix->input(this->party, N*num_cmps_curr, lhs, signed_, ell, s);
+    FixArray rhs_fp = fix->input(this->party, N*num_cmps_curr, rhs, signed_, ell, s);
+
+    lhs_fp = fix->add(lhs_fp, rhs_fp);
+    for (int j = 0; j < num_cmps_old && j + 1 < num_cmps_old; j += 2) {
+      memcpy(x_tr[odd_num_cmps + (j/2)].data, lhs_fp.data + (j/2)*N, N*sizeof(uint64_t));
+    }
+    num_cmps_old = num_cmps_curr + odd_num_cmps;
+    num_cmps_curr = num_cmps_old/2;
+    // print_fix(x_tr[0]);
+  }
+  delete[] lhs;
+  delete[] rhs;
+
+  return x_tr[0];
 }

@@ -38,20 +38,11 @@ void SS_op::add(vector<uint64_t>& x, vector<uint64_t>& y, vector<uint64_t>& out)
 
 void SS_op::add(vector<uint64_t>& x, uint64_t y, vector<uint64_t>& out) {
     auto size = x.size();
-
-    uint64_t ell_mask_ = (1ULL << (ELL)) - 1;
-    for (auto i = 0; i < size; i++) {
-        out[i] = (x[i] + (y & ell_mask_)) & ell_mask_;
-    }
-}
-
-void SS_op::mul(vector<uint64_t>& x, uint64_t y, vector<uint64_t>& out) {
-    auto size = x.size();
     assert(size == out.size());
 
     uint64_t ell_mask_ = (1ULL << (ELL)) - 1;
     for (auto i = 0; i < size; i++) {
-        out[i] = (x[i] * y) & ell_mask_;
+        out[i] = (x[i] + (y & ell_mask_)) & ell_mask_;
     }
 }
 
@@ -62,6 +53,16 @@ void SS_op::mul(vector<uint64_t>& x, vector<uint64_t>& y, vector<uint64_t>& out)
     int32_t bwA = 21, bwB = 21, bwC = bwA + bwB;
 
     mult->hadamard_product(dim, x.data(), y.data(), out.data(), bwA, bwB, bwC);
+}
+
+void SS_op::mul(vector<uint64_t>& x, uint64_t y, vector<uint64_t>& out) {
+    auto size = x.size();
+    assert(size == out.size());
+
+    uint64_t ell_mask_ = (1ULL << (ELL)) - 1;
+    for (auto i = 0; i < size; i++) {
+        out[i] = (x[i] * y) & ell_mask_;
+    }
 }
 
 void SS_op::matmul(vector<vector<uint64_t>>& x, vector<vector<uint64_t>>& y,

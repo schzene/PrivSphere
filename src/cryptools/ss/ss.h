@@ -28,6 +28,16 @@ public:
     void add(vector<uint64_t>& x, vector<uint64_t>& y, vector<uint64_t>& out);
     void add(vector<uint64_t>& x, uint64_t y, vector<uint64_t>& out);
 
+    inline void sub(vector<uint64_t>& x, vector<uint64_t>& y, vector<uint64_t>& out) {
+        mul(y, (1ULL << (ELL - 1)) + 1, out);
+        add(x, out, out);
+    }
+    
+    inline void sub(vector<uint64_t>& x, uint64_t y, vector<uint64_t>& out) {
+        uint64_t _y = y ^ (1ULL << (ELL - 1));
+        add(x, y, out);
+    }
+
     void mul(vector<uint64_t>& x, uint64_t y, vector<uint64_t>& c);
     void mul(vector<uint64_t>& x, vector<uint64_t>& y, vector<uint64_t>& out);
     void matmul(vector<vector<uint64_t>>& x, vector<vector<uint64_t>>& y,

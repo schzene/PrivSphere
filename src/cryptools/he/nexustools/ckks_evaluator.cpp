@@ -2,6 +2,7 @@
 
 #include <chrono>
 #include <iostream>
+#include <seal/ciphertext.h>
 
 using namespace chrono;
 using namespace nexus;
@@ -64,7 +65,7 @@ double CKKSEvaluator::calculateMAE(vector<double>& y_true, Ciphertext& ct, int N
 
     double sum_absolute_errors = 0.0;
     for (size_t i = 0; i < N; ++i) {
-        sum_absolute_errors += abs(y_true[i] - y_pred[i]);
+        sum_absolute_errors += std::abs(y_true[i] - y_pred[i]);
     }
 
     return sum_absolute_errors / N;
@@ -88,8 +89,7 @@ vector<double> CKKSEvaluator::init_mask(int N, int m) {
             for (int j = 0; j < m; ++j) {
                 v[i * m + j] = 1;
             }
-        }
-        else {
+        } else {
             for (int j = 0; j < m; ++j) {
                 v[i * m + j] = 0;
             }
@@ -163,8 +163,8 @@ Ciphertext CKKSEvaluator::poly_eval(Ciphertext x, vector<Plaintext> coeff) {
     evaluator->rescale_to_next_inplace(sum_5_7);
 
     // c7*x^7 + c5*x^5 + c3*x^3 + c1*x
-    new_x.scale()   = scale;
-    new_x3.scale()  = scale;
+    new_x.scale() = scale;
+    new_x3.scale() = scale;
     sum_5_7.scale() = scale;
 
     evaluator->mod_switch_to_inplace(new_x, sum_5_7.parms_id());
@@ -199,16 +199,14 @@ Ciphertext CKKSEvaluator::sgn_eval(Ciphertext x, int d_g, int d_f, double sgn_fa
     for (int i = 0; i < d_g; i++) {
         if (i == d_g - 1) {
             eval_odd_deg9_poly(g4_coeffs_last, dest, dest);
-        }
-        else {
+        } else {
             eval_odd_deg9_poly(g4_coeffs, dest, dest);
         }
     }
     for (int i = 0; i < d_f; i++) {
         if (i == d_f - 1) {
             eval_odd_deg9_poly(f4_coeffs_last, dest, dest);
-        }
-        else {
+        } else {
             eval_odd_deg9_poly(f4_coeffs, dest, dest);
         }
     }
@@ -234,8 +232,8 @@ void CKKSEvaluator::eval_odd_deg9_poly(vector<double>& a, Ciphertext& x, Ciphert
       -> Errorless Polynomial Evaluation (3.2. of https://eprint.iacr.org/2020/1203)
       GOAL: evaluate a polynomial exactly so no need to stabilize and lose precision
       (x at level L and scale D --> P(x) at level L-4 and scale D)
-      it's possible to do this exactly for polyeval as (x,x2,x3,x6) determine the scale D_L for each involved level L:
-      (assume the primes at levels L to L-4 are p, q, r, s)
+      it's possible to do this exactly for polyeval as (x,x2,x3,x6) determine the scale D_L for each
+     involved level L: (assume the primes at levels L to L-4 are p, q, r, s)
 
       level       ctx       scale (D_l)
       ==================================
@@ -244,13 +242,13 @@ void CKKSEvaluator::eval_odd_deg9_poly(vector<double>& a, Ciphertext& x, Ciphert
         L-2        x3         D^3 / pq
         L-3        x6         D^6 / p^2 q^2 r
 
-      Just by encoding constants at different scales we can make every ctx at level l be at scale D_l
-      (not possible in general, e.g. rescale(x2*x2) produces L-2 ciphertext with scale D^4/ppq)
-      (to fix this we would use the Adjust op. that multiplies ctx by constants and Algo 3 for primes from
-     https://eprint.iacr.org/2020/1118)
+      Just by encoding constants at different scales we can make every ctx at level l be at scale
+     D_l (not possible in general, e.g. rescale(x2*x2) produces L-2 ciphertext with scale D^4/ppq)
+      (to fix this we would use the Adjust op. that multiplies ctx by constants and Algo 3 for
+     primes from https://eprint.iacr.org/2020/1118)
 
-      Now we know that sc(P(x)) should be D, so we recursively go back to compute the scales for each coefficient
-      sc(T1)=sc(T2)=sc(T3)=sc(P(x))=D
+      Now we know that sc(P(x)) should be D, so we recursively go back to compute the scales for
+     each coefficient sc(T1)=sc(T2)=sc(T3)=sc(P(x))=D
 
       T3:
           sc(a1) = q (should be p but it gets multiplied with modswitched x)
@@ -267,7 +265,7 @@ void CKKSEvaluator::eval_odd_deg9_poly(vector<double>& a, Ciphertext& x, Ciphert
   */
     // chrono::high_resolution_clock::time_point time_start, time_end;
     // time_start = high_resolution_clock::now();
-    double D = x.scale();  // maybe not init_scale but preserved
+    double D = x.scale(); // maybe not init_scale but preserved
 
     uint64_t p = get_modulus(x, 1);
     uint64_t q = get_modulus(x, 2);
@@ -292,62 +290,63 @@ void CKKSEvaluator::eval_odd_deg9_poly(vector<double>& a, Ciphertext& x, Ciphert
 
     evaluator->square(x, x2);
     evaluator->relinearize_inplace(x2, *relin_keys);
-    evaluator->rescale_to_next_inplace(x2);  // L-1
+    evaluator->rescale_to_next_inplace(x2); // L-1
 
-    evaluator->mod_switch_to_next_inplace(x);  // L-1
+    evaluator->mod_switch_to_next_inplace(x); // L-1
     evaluator->multiply(x2, x, x3);
     evaluator->relinearize_inplace(x3, *relin_keys);
-    evaluator->rescale_to_next_inplace(x3);  // L-2
+    evaluator->rescale_to_next_inplace(x3); // L-2
 
     evaluator->square(x3, x6);
     evaluator->relinearize_inplace(x6, *relin_keys);
-    evaluator->rescale_to_next_inplace(x6);  // L-3
+    evaluator->rescale_to_next_inplace(x6); // L-3
 
     Plaintext a1, a3, a5, a7, a9;
 
     // Build T1
     Ciphertext T1;
     double a5_scale = D / x2.scale() * p / x3.scale() * q;
-    encoder->encode(a[5], x2.parms_id(), a5_scale, a5);  // L-1
+    encoder->encode(a[5], x2.parms_id(), a5_scale, a5); // L-1
     evaluator->multiply_plain(x2, a5, T1);
-    evaluator->rescale_to_next_inplace(T1);  // L-2
+    evaluator->rescale_to_next_inplace(T1); // L-2
 
     // Update: using a_scales[3] is only approx. correct, so we directly use T1.scale()
-    encoder->encode(a[3], T1.parms_id(), T1.scale(), a3);  // L-2
+    encoder->encode(a[3], T1.parms_id(), T1.scale(), a3); // L-2
 
-    evaluator->add_plain_inplace(T1, a3);  // L-2
+    evaluator->add_plain_inplace(T1, a3); // L-2
 
     evaluator->multiply_inplace(T1, x3);
     evaluator->relinearize_inplace(T1, *relin_keys);
-    evaluator->rescale_to_next_inplace(T1);  // L-3
+    evaluator->rescale_to_next_inplace(T1); // L-3
 
     // Build T2
     Ciphertext T2;
     Plaintext a9_switched;
     double a9_scale = D / x3.scale() * r / x6.scale() * q;
-    encoder->encode(a[9], x3.parms_id(), a9_scale, a9);  // L-2
+    encoder->encode(a[9], x3.parms_id(), a9_scale, a9); // L-2
     evaluator->multiply_plain(x3, a9, T2);
-    evaluator->rescale_to_next_inplace(T2);  // L-3
+    evaluator->rescale_to_next_inplace(T2); // L-3
 
     Ciphertext a7x;
     double a7_scale = T2.scale() / x.scale() * p;
-    encoder->encode(a[7], x.parms_id(), a7_scale, a7);  // L-1 (x was modswitched)
+    encoder->encode(a[7], x.parms_id(), a7_scale, a7); // L-1 (x was modswitched)
     evaluator->multiply_plain(x, a7, a7x);
-    evaluator->rescale_to_next_inplace(a7x);               // L-2
-    evaluator->mod_switch_to_inplace(a7x, T2.parms_id());  // L-3
+    evaluator->rescale_to_next_inplace(a7x);              // L-2
+    evaluator->mod_switch_to_inplace(a7x, T2.parms_id()); // L-3
 
     double mid_scale = (T2.scale() + a7x.scale()) / 2;
-    T2.scale() = a7x.scale() = mid_scale;  // this is the correct scale now, need to set it still to avoid SEAL assert
-    evaluator->add_inplace(T2, a7x);       // L-3
+    T2.scale() = a7x.scale() =
+        mid_scale; // this is the correct scale now, need to set it still to avoid SEAL assert
+    evaluator->add_inplace(T2, a7x); // L-3
     evaluator->multiply_inplace(T2, x6);
     evaluator->relinearize_inplace(T2, *relin_keys);
-    evaluator->rescale_to_next_inplace(T2);  // L-4
+    evaluator->rescale_to_next_inplace(T2); // L-4
 
     // Build T3
     Ciphertext T3;
-    encoder->encode(a[1], x.parms_id(), p, a1);  // L-1 (x was modswitched)
+    encoder->encode(a[1], x.parms_id(), p, a1); // L-1 (x was modswitched)
     evaluator->multiply_plain(x, a1, T3);
-    evaluator->rescale_to_next_inplace(T3);  // L-2
+    evaluator->rescale_to_next_inplace(T3); // L-2
 
     // T1, T2 and T3 should be on the same scale up to floating point
     // but we still need to set them manually to avoid SEAL assert
@@ -355,16 +354,17 @@ void CKKSEvaluator::eval_odd_deg9_poly(vector<double>& a, Ciphertext& x, Ciphert
     T1.scale() = T2.scale() = T3.scale() = mid3_scale;
 
     dest = T2;
-    evaluator->mod_switch_to_inplace(T1, dest.parms_id());  // L-4
+    evaluator->mod_switch_to_inplace(T1, dest.parms_id()); // L-4
     evaluator->add_inplace(dest, T1);
-    evaluator->mod_switch_to_inplace(T3, dest.parms_id());  // L-4
+    evaluator->mod_switch_to_inplace(T3, dest.parms_id()); // L-4
     evaluator->add_inplace(dest, T3);
 
     /////////////////////////////////////////
     // it should be ==D but we don't stabilize if it's not, D' != D is ok
     // the goal was to make T1+T2+T3 work with minimal loss in precision
     // time_end = high_resolution_clock::now();
-    // cout << "Poly eval took " << duration_cast<milliseconds>(time_end - time_start).count() << " ms" << endl;
+    // cout << "Poly eval took " << duration_cast<milliseconds>(time_end - time_start).count() << "
+    // ms" << endl;
 }
 
 Ciphertext CKKSEvaluator::newtonIter(Ciphertext x, Ciphertext res, int iter) {
@@ -418,7 +418,7 @@ Ciphertext CKKSEvaluator::newtonIter(Ciphertext x, Ciphertext res, int iter) {
         //-0.5*b*x^3 + 1.5*x
         evaluator->mod_switch_to_inplace(res, res_x.parms_id());
         res_x.scale() = scale;
-        res.scale()   = scale;
+        res.scale() = scale;
         evaluator->add_inplace(res, res_x);
         // cout << "final\n";
     }
@@ -456,7 +456,7 @@ pair<Ciphertext, Ciphertext> CKKSEvaluator::goldSchmidtIter(Ciphertext v, Cipher
         evaluator->multiply(x, r, temp);
         evaluator->relinearize_inplace(temp, *relin_keys);
         evaluator->rescale_to_next_inplace(temp);
-        x.scale()    = scale;
+        x.scale() = scale;
         temp.scale() = scale;
         evaluator->mod_switch_to_inplace(x, temp.parms_id());
         evaluator->add_inplace(x, temp);
@@ -467,7 +467,7 @@ pair<Ciphertext, Ciphertext> CKKSEvaluator::goldSchmidtIter(Ciphertext v, Cipher
         evaluator->multiply(h, r, temp);
         evaluator->relinearize_inplace(temp, *relin_keys);
         evaluator->rescale_to_next_inplace(temp);
-        h.scale()    = scale;
+        h.scale() = scale;
         temp.scale() = scale;
         evaluator->mod_switch_to_inplace(h, temp.parms_id());
         evaluator->add_inplace(h, temp);
@@ -482,8 +482,8 @@ pair<Ciphertext, Ciphertext> CKKSEvaluator::goldSchmidtIter(Ciphertext v, Cipher
 }
 
 Ciphertext CKKSEvaluator::invert_sqrt(Ciphertext x, int d_newt, int d_gold) {
-    Ciphertext res                             = initGuess(x);
-    Ciphertext y                               = newtonIter(x, res, d_newt);
+    Ciphertext res = initGuess(x);
+    Ciphertext y = newtonIter(x, res, d_newt);
     pair<Ciphertext, Ciphertext> sqrt_inv_sqrt = goldSchmidtIter(x, y, d_gold);
     return sqrt_inv_sqrt.second;
 }
@@ -512,9 +512,46 @@ Ciphertext CKKSEvaluator::inverse(Ciphertext x, int iter) {
     return res;
 }
 
+Ciphertext CKKSEvaluator::abs(Ciphertext x, int d_g, int d_f) {
+    Ciphertext res = x;
+    Ciphertext sgn = sgn_eval(x, d_g, d_f, 1);
+    evaluator->mod_switch_to_inplace(res, sgn.parms_id());
+    evaluator->multiply(sgn, res, res);
+    return res;
+}
+
+Ciphertext CKKSEvaluator::ge(Ciphertext x, Ciphertext y, int d_g, int d_f) {
+    Plaintext _0_5;
+    encoder->encode(0.5, x.scale(), _0_5);
+    
+    Ciphertext _x = x, _y = y, x_y;
+    evaluator->sub(x, y, x_y);
+    evaluator->multiply_plain_inplace(x_y, _0_5);
+    evaluator->relinearize_inplace(x_y, *relin_keys);
+    evaluator->rescale_to_next_inplace(x_y);
+
+    Ciphertext x_y_sgn = sgn_eval(x_y, d_g, d_f);
+    Ciphertext y_x_sgn;
+    evaluator->negate(x_y_sgn, y_x_sgn);
+
+    evaluator->mod_switch_to_inplace(_0_5, x_y_sgn.parms_id());
+    _0_5.scale() = x_y_sgn.scale();
+    evaluator->add_plain_inplace(x_y_sgn, _0_5);
+    evaluator->add_plain_inplace(y_x_sgn, _0_5);
+
+    evaluator->mod_switch_to_inplace(_x, x_y_sgn.parms_id());
+    evaluator->multiply_inplace(_x, x_y_sgn);
+    evaluator->mod_switch_to_inplace(_y, y_x_sgn.parms_id());
+    evaluator->multiply_inplace(_y, y_x_sgn);
+    Ciphertext res;
+    evaluator->add(_x, _y, res);
+    return res;
+}
+
 uint64_t CKKSEvaluator::get_modulus(Ciphertext& x, int k) {
-    const vector<Modulus>& modulus = context->get_context_data(x.parms_id())->parms().coeff_modulus();
-    int sz                         = modulus.size();
+    const vector<Modulus>& modulus =
+        context->get_context_data(x.parms_id())->parms().coeff_modulus();
+    int sz = modulus.size();
     return modulus[sz - k].value();
 }
 

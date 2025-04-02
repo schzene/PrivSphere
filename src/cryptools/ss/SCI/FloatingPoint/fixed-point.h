@@ -141,6 +141,7 @@ public:
   LinearOT *mult;
   BoolOp *bool_op;
   FixOp *fix;
+  MathFunctions *math;
 
   FixOp(int party, sci::IOPack *iopack, sci::OTPack *otpack) {
     this->party = party;
@@ -154,6 +155,7 @@ public:
     this->mult = new LinearOT(party, iopack, otpack);
     this->bool_op = new BoolOp(party, iopack, otpack);
     this->fix = this;
+    this->math = new MathFunctions(party, iopack, otpack);
   }
 
   ~FixOp() {
@@ -164,6 +166,7 @@ public:
     delete trunc;
     delete mult;
     delete bool_op;
+    delete math;
   }
 
   // input functions: return a FixArray that stores data_
@@ -255,6 +258,9 @@ public:
   inline FixArray mul(const FixArray &x, uint64_t y, uint8_t *msb_x = nullptr) {
       return mul(x, y, x.ell, msb_x);
   }
+
+FixArray matmul(int dim1, int dim2, int dim3, const FixArray &x, const FixArray &y,
+                int ell, uint8_t *msb_x = nullptr, uint8_t *msb_y = nullptr);
 
   // Left Shift: returns x[i] << s[i] (in ell bits)
   // Output bitlength is ell, output signedness and scale are same as that of x
@@ -399,17 +405,51 @@ public:
   // digit_size is an optional parameter that should be <= 8. This parameter affects both efficiency and precision (the larger the better)
   FixArray exp(const FixArray& x, int l_y, int s_y, int digit_size = 8);
 
+  inline FixArray reciprocal(const FixArray& dn, int l_out, int s_out) {
+    FixArray ret(party, dn.size, dn.signed_, l_out, s_out);
+    int32_t m = (s_out <= 18 ? ceil((s_out - 2) / 2.0) : ceil((ceil(s_out / 2.0) - 2) / 2.0));
+    math->reciprocal_approximation(ret.size, m, dn.data, ret.data, dn.ell, ret.ell, dn.s, s_out);
+    return ret;
+  }
+
   // Division: return out = nm / dn in an l_out fixed-point representation with scale s_out
   // nm and dn must be secret-shared, and s_out should be <= dn.s
   // if normalized_dn is true, it is assumed that dn \in [1,2)
   FixArray div(const FixArray& nm, const FixArray& dn, int l_out, int s_out, bool normalized_dn = false);
 
-  FixArray sqrt(const FixArray& x, int l_y, int s_y, bool recp_sqrt = false);
-
   FixArray sigmoid(const FixArray& x, int l_y, int s_y);
 
   FixArray tanh(const FixArray& x, int l_y, int s_y);
 
+  FixArray poly1(const FixArray& p);
+
+  std::tuple<FixArray, FixArray> exp4(const FixArray &x);
+  
+  inline FixArray lookup_table_exp(const FixArray& x) {
+    FixArray ret(party, x.size, x.signed_, x.ell, x.s);
+    math->lookup_table_exp(x.size, x.data, ret.data, x.ell, x.ell, x.s, x.s);
+    return ret;
+  }
+
+  inline FixArray gt_p_sub(const FixArray& x, const FixArray& p) {
+    BoolArray gt = fix->GT(x, p);
+    FixArray sub = fix->sub(x, p);
+    return fix->if_else(gt, sub, x);
+  }
+
+  inline FixArray sqrt(const FixArray& x, bool recp_sqrt = false) {
+    FixArray ret(party, x.size, x.signed_, x.ell, x.s);
+    math->sqrt(x.size, x.data, ret.data, x.ell, x.ell, x.s, x.s, recp_sqrt);
+    return ret;
+  }
+
+  inline FixArray abs(const FixArray &x) {
+    BoolArray msb_x = MSB(x);
+    FixArray neg_x = mul(x, -1);
+    return if_else(msb_x, neg_x, x);
+  }
+
+  FixArray tree_sum(const vector<FixArray>& x);
 };
 
 #endif // FIXED_POINT_H__

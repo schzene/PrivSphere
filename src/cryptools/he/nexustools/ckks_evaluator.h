@@ -1,4 +1,5 @@
 #pragma once
+#include <seal/ciphertext.h>
 #ifndef NEXUS_CKKS_EVA__
 #define NEXUS_CKKS_EVA__
 
@@ -93,6 +94,8 @@ public:
     Ciphertext sgn_eval(Ciphertext x, int d_g, int d_f, double sgn_factor = 0.5);
     Ciphertext exp(Ciphertext x);
     Ciphertext inverse(Ciphertext x, int iter = 4);
+    Ciphertext abs(Ciphertext x, int d_g = 2, int d_f = 2);
+    Ciphertext ge(Ciphertext x, Ciphertext y, int d_g = 2, int d_f = 2);
 
     double calculateMAE(vector<double>& y_true, Ciphertext& ct, int N);
 };

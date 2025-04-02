@@ -12,3 +12,9 @@ target_include_directories(PrivaSphere-he PUBLIC
 target_link_libraries(PrivaSphere-he PUBLIC
     nexus-tools
 )
+
+add_executable(nexus_test "nexus_test.cpp")
+target_link_libraries(nexus_test PUBLIC
+    PrivaSphere-he
+    nexus-tools
+)
