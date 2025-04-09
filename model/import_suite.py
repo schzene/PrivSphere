@@ -23,8 +23,7 @@ model_dirs = [
 
 
     # ["bert_v0", (1, ), ("fp32", )],
-    # ["bertlayer", (1, ), ("fp32", )],
-    ["bertselfattention", (1, ), ("fp32", )],
+    ["bertlayer", (1, ), ("fp32", )],
 
 
     # error 

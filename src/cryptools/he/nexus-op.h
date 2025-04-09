@@ -78,3 +78,7 @@ private:
     LNEvaluator* ln_evaluator;
     SoftmaxEvaluator* softmax_evaluator;
 };
+
+void send_ct(NetIO *io, const Ciphertext* ct);
+
+void recv_ct(NetIO *io, Ciphertext* ct, SEALContext *context);

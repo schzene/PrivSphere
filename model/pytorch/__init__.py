@@ -160,28 +160,6 @@ def bertlayer(batch_size):
     
     return model, inputs   
 
-def bertselfattention(batch_size):
-    from .bert_config import BertConfig
-    from .pytorch_bert import BertSelfAttention
-
-    config = BertConfig(vocab_size=30522,
-        hidden_size=768,
-        num_hidden_layers=1,
-        num_attention_heads=12,
-        intermediate_size=3072,
-        max_position_embeddings=128,
-        attention_probs_dropout_prob=0.1,
-        hidden_dropout_prob=0.1,
-        batch_size=batch_size)
-    model = BertSelfAttention(config)
-    input1 = torch.ones(1,128,768,dtype=torch.float32)
-    input2 = torch.ones(1,1,1,128,dtype=torch.float32)
-
-    inputs = (input1,input2)
-    
-    return model, inputs   
-
-
 def bert(batch_size):
     from .bert_config import BertConfig
     from .pytorch_bert import BertModel

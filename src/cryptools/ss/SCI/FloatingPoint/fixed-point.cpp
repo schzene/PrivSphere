@@ -1210,3 +1210,28 @@ FixArray FixOp::tree_sum(const vector<FixArray>& x) {
 
   return x_tr[0];
 }
+
+void send_fix_array(sci::NetIO* io, const FixArray& x) {
+  io->send_data(&x.party, sizeof(int));
+  io->send_data(&x.size, sizeof(int));
+  io->send_data(&x.signed_, sizeof(bool));
+  io->send_data(&x.ell, sizeof(int));
+  io->send_data(&x.s, sizeof(int));
+  io->send_data(x.data, x.size * sizeof(uint64_t));
+}
+
+void recv_fix_array(sci::NetIO* io, FixArray& x) {
+  x = FixArray();
+  
+  io->recv_data(&x.party, sizeof(int));
+  io->recv_data(&x.size, sizeof(int));
+  io->recv_data(&x.signed_, sizeof(bool));
+  io->recv_data(&x.ell, sizeof(int));
+  io->recv_data(&x.s, sizeof(int));
+
+  assert(x.party == sci::PUBLIC || x.party == sci::ALICE || x.party == sci::BOB);
+  assert(x.size > 0);
+  assert(x.ell <= 64 && x.ell > 0);
+  x.data = new uint64_t[x.size];
+  io->recv_data(x.data, x.size * sizeof(uint64_t));
+}

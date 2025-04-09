@@ -452,4 +452,7 @@ FixArray matmul(int dim1, int dim2, int dim3, const FixArray &x, const FixArray 
   FixArray tree_sum(const vector<FixArray>& x);
 };
 
+void send_fix_array(sci::NetIO* io, const FixArray& x);
+
+void recv_fix_array(sci::NetIO* io, FixArray& x);
 #endif // FIXED_POINT_H__
