@@ -203,7 +203,7 @@ void NEXUS_op::softmax(const Data& input, Data& output) {
     }
 }
 
-void send_ct(NetIO *io, const Ciphertext* ct) {
+void send_ct(NetIO* io, const Ciphertext* ct) {
     std::stringstream os;
     ct->save(os);
 
@@ -213,9 +213,9 @@ void send_ct(NetIO *io, const Ciphertext* ct) {
     io->send_data(ct_ser.c_str(), ct_size * sizeof(char));
 }
 
-void recv_ct(NetIO *io, Ciphertext* ct, SEALContext *context) {
+void recv_ct(NetIO* io, Ciphertext* ct, SEALContext* context) {
     uint64_t ct_size;
-    char *ct_ser;
+    char* ct_ser;
     io->recv_data(&ct_size, sizeof(uint64_t));
     ct_ser = new char[ct_size];
     io->recv_data(ct_ser, ct_size * sizeof(char));

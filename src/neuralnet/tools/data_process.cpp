@@ -1,5 +1,4 @@
-#include "protocols.h"
-#include "FloatingPoint/fixed-point.h"
+#include "data_process.h"
 
 void convert(unsigned party, const MPCType s, const MPCType t, const Data& i, Data& o) {
     o = Data();

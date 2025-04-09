@@ -51,7 +51,7 @@ int main(int argc, char** argv) {
         for (size_t j = 0; j < rows; ++j) {
             for (size_t k = 0; k < cols; ++k) {
                 myData.NexusData[i][j][k] = static_cast<double>(i * rows * cols + j * cols + k);
-                dataW.NexusData[i][j][k] = static_cast<double>(i * rows * cols + j * cols + k);
+                dataW.NexusData[i][j][k]  = static_cast<double>(i * rows * cols + j * cols + k);
             }
         }
     }
@@ -70,8 +70,8 @@ int main(int argc, char** argv) {
     Data out;
     INIT_TIMER
     START_TIMER
-    nexusop->fc(myData, dataW, out);
-    // nexusop->softmax(myData, out);
+    // nexusop->fc(myData, dataW, out);
+    nexusop->softmax(myData, out);
     // nexusop->ln(myData, out);
     // nexusop->gelu(myData, out);
     // for (int i = 0; i < dim1; i++) {

@@ -8,7 +8,7 @@
 Attention::Attention(unsigned party, unsigned int n) {
     this->party = party;
     this->n = n;
-    linear  = new Linear(party, nullptr, 0);
+    linear = new Linear(party, nullptr, 0);
     softmax = new SoftMax(party);
 }
 
@@ -17,14 +17,19 @@ Attention::~Attention() {
     delete softmax;
 }
 
-void Attention::forward(const vector<vector<vector<uint64_t>>>& input, vector<vector<vector<uint64_t>>>& output) {
+void Attention::forward(const vector<vector<vector<uint64_t>>>& input,
+                        vector<vector<vector<uint64_t>>>& output) {
     const unsigned int num_features = input.size();
-    const double scale              = 1.0 / sqrt(dk);
+    const double scale = 1.0 / sqrt(dk);
 
-    vector<vector<vector<uint64_t>>> Q(num_features, vector<vector<uint64_t>>(BATCH_SIZE, vector<uint64_t>(dk)));
-    vector<vector<vector<uint64_t>>> K(num_features, vector<vector<uint64_t>>(BATCH_SIZE, vector<uint64_t>(dk)));
-    vector<vector<vector<uint64_t>>> V(num_features, vector<vector<uint64_t>>(BATCH_SIZE, vector<uint64_t>(dk)));
-    vector<vector<vector<uint64_t>>> Kt(num_features, vector<vector<uint64_t>>(dk, vector<uint64_t>(BATCH_SIZE)));
+    vector<vector<vector<uint64_t>>> Q(num_features,
+                                       vector<vector<uint64_t>>(BATCH_SIZE, vector<uint64_t>(dk)));
+    vector<vector<vector<uint64_t>>> K(num_features,
+                                       vector<vector<uint64_t>>(BATCH_SIZE, vector<uint64_t>(dk)));
+    vector<vector<vector<uint64_t>>> V(num_features,
+                                       vector<vector<uint64_t>>(BATCH_SIZE, vector<uint64_t>(dk)));
+    vector<vector<vector<uint64_t>>> Kt(num_features,
+                                        vector<vector<uint64_t>>(dk, vector<uint64_t>(BATCH_SIZE)));
 
     linear->fc(input, wq, Q);
     linear->fc(input, wk, K);
@@ -47,8 +52,8 @@ void Attention::forward(const vector<vector<vector<uint64_t>>>& input, vector<ve
         }
     }
 
-    vector<vector<vector<uint64_t>>> QK(num_features,
-                                        vector<vector<uint64_t>>(BATCH_SIZE, vector<uint64_t>(BATCH_SIZE)));
+    vector<vector<vector<uint64_t>>> QK(
+        num_features, vector<vector<uint64_t>>(BATCH_SIZE, vector<uint64_t>(BATCH_SIZE)));
     linear->fc(Q, Kt, QK);
     for (unsigned i = 0; i < num_features; i++) {
         for (unsigned j = 0; j < BATCH_SIZE; j++) {
@@ -65,7 +70,7 @@ void Attention::forward(const vector<vector<vector<uint64_t>>>& input, vector<ve
 MultiHeadAttention::MultiHeadAttention(unsigned int party, unsigned int n) {
     this->party = party;
     this->n = n;
-    attns   = new Attention*[N_HEADS];
+    attns = new Attention*[N_HEADS];
     for (int i = 0; i < N_HEADS; i++) {
         attns[i] = new Attention(party, n);
     }
@@ -81,12 +86,12 @@ MultiHeadAttention::~MultiHeadAttention() {
 void MultiHeadAttention::forward(const vector<vector<vector<uint64_t>>>& input,
                                  vector<vector<vector<uint64_t>>>& output) {
     const unsigned int num_features = input.size();
-    vector<vector<vector<uint64_t>>> attns_output(N_HEADS,
-                                                  vector<vector<uint64_t>>(BATCH_SIZE, vector<uint64_t>(SEQ_LEN)));
+    vector<vector<vector<uint64_t>>> attns_output(
+        N_HEADS, vector<vector<uint64_t>>(BATCH_SIZE, vector<uint64_t>(SEQ_LEN)));
 
     for (int h = 0; h < N_HEADS; h++) {
-        vector<vector<vector<uint64_t>>> output_h(num_features,
-                                                  vector<vector<uint64_t>>(BATCH_SIZE, vector<uint64_t>(SEQ_LEN)));
+        vector<vector<vector<uint64_t>>> output_h(
+            num_features, vector<vector<uint64_t>>(BATCH_SIZE, vector<uint64_t>(SEQ_LEN)));
         attns[h]->forward(input, output_h);
         for (unsigned int f = 0; f < num_features; f++) {
             for (unsigned int i = 0; i < BATCH_SIZE; i++) {
@@ -101,8 +106,8 @@ void MultiHeadAttention::forward(const vector<vector<vector<uint64_t>>>& input,
 FFN::FFN(unsigned int party, unsigned int n) {
     this->party = party;
     this->n = n;
-    linear  = new Linear(party, nullptr, 0);
-    gelu    = new GeLU(party);
+    linear = new Linear(party, nullptr, 0);
+    gelu = new GeLU(party);
 }
 
 FFN::~FFN() {
@@ -110,9 +115,11 @@ FFN::~FFN() {
     delete gelu;
 }
 
-void FFN::forward(const vector<vector<vector<uint64_t>>>& input, vector<vector<vector<uint64_t>>>& output) {
+void FFN::forward(const vector<vector<vector<uint64_t>>>& input,
+                  vector<vector<vector<uint64_t>>>& output) {
     const unsigned int num_features = input.size();
-    vector<vector<vector<uint64_t>>> h1(num_features, vector<vector<uint64_t>>(BATCH_SIZE, vector<uint64_t>(FFN_DIM)));
+    vector<vector<vector<uint64_t>>> h1(
+        num_features, vector<vector<uint64_t>>(BATCH_SIZE, vector<uint64_t>(FFN_DIM)));
 
     linear->fc(input, w1, h1);
     for (unsigned i = 0; i < num_features; i++) {
@@ -137,11 +144,11 @@ void FFN::forward(const vector<vector<vector<uint64_t>>>& input, vector<vector<v
 
 Encoder::Encoder(unsigned int party, unsigned int n) {
     this->party = party;
-    this->n   = n;
+    this->n = n;
     attention = new MultiHeadAttention(party, n);
-    ln1       = new LayerNorm(party);
-    ffn       = new FFN(party, n);
-    ln2       = new LayerNorm(party);
+    ln1 = new LayerNorm(party);
+    ffn = new FFN(party, n);
+    ln2 = new LayerNorm(party);
 }
 
 Encoder::~Encoder() {
@@ -151,7 +158,8 @@ Encoder::~Encoder() {
     delete ln2;
 }
 
-void Encoder::forward(const vector<vector<vector<uint64_t>>>& input, vector<vector<vector<uint64_t>>>& output) {
+void Encoder::forward(const vector<vector<vector<uint64_t>>>& input,
+                      vector<vector<vector<uint64_t>>>& output) {
     attention->forward(input, output);
     // ln1->ln(output, output);
     ffn->forward(output, output);
@@ -172,7 +180,8 @@ Bert::~Bert() {
     delete[] encoder;
 }
 
-void Bert::forward(const vector<vector<vector<uint64_t>>>& input, vector<vector<vector<uint64_t>>>& output) {
+void Bert::forward(const vector<vector<vector<uint64_t>>>& input,
+                   vector<vector<vector<uint64_t>>>& output) {
     encoder[0]->forward(input, output);
     for (unsigned int i = 1; i < N_LAYERS; i++) {
         encoder[i]->forward(output, output);

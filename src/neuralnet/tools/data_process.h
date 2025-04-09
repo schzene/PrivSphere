@@ -1,13 +1,14 @@
 #pragma once
-#ifndef PRIVSPHERE_PROTOCOLS_H__
-#define PRIVSPHERE_PROTOCOLS_H__
+#ifndef PRIVSPHERE_NETDATATOOL_H__
+#    define PRIVSPHERE_NETDATATOOL_H__
 
-#include <cstdint>
-#include <vector>
+#    include <cstdint>
+#    include <vector>
 
-#include "config.h"
-#include "cryptools/he/nexus-op.h"
-#include "cryptools/ss/ss.h"
+#    include "config.h"
+#    include "nexus-op.h"
+
+#    include "FloatingPoint/fixed-point.h"
 
 /**
  * @brief Convert input 'i' of type 's' to output 'o' of type 't'
@@ -61,5 +62,10 @@ inline void convert(unsigned party, const OP* s, const MPCType t, const Data& i,
 
 void load_data(vector<vector<vector<uint64_t>>>& A, size_t dim1, size_t dim2, size_t dim3);
 void load_data(vector<vector<uint64_t>>& B, size_t dim1, size_t dim2);
+
+Ciphertext SS2HE(FixArray ss_data, NetIO* io, Encryptor* encryptor, CKKSEncoder* encoder,
+                 Evaluator* evaluator, SEALContext* context, double scale);
+FixArray HE2SS(int party, Ciphertext& ct, NetIO* io, Decryptor* decryptor, CKKSEncoder* encoder,
+               Evaluator* evaluator, SEALContext* context, double scale);
 
 #endif
