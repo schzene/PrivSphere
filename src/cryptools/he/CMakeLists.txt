@@ -12,3 +12,16 @@ target_include_directories(PrivaSphere-he PUBLIC
 target_link_libraries(PrivaSphere-he PUBLIC
     nexus-tools
 )
+
+
+# add_executable(
+#     mainsgn
+#     ${CMAKE_SOURCE_DIR}/src/cryptools/he/nexustools/main.cpp
+#     ${CMAKE_SOURCE_DIR}/src/cryptools/he/nexustools/sgn_function.cpp
+#     ${COMMON_SOURCE_FILES}
+# )
+
+# target_include_directories(mainsgn PUBLIC
+#     /usr/local/include
+#     ${COMMON_HEADER_DIR}
+# )

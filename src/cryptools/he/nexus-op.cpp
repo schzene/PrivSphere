@@ -21,7 +21,7 @@ NEXUS_op::NEXUS_op(int party, NetIO* io, unsigned long logN, vector<int> COEFF_M
     long inverse_deg  = 1;
     long loge         = 10;
 
-    this->logN = logN;
+    this->logN          = logN;
     poly_modulus_degree = 1 << logN;
     parms               = new EncryptionParameters(scheme_type::ckks);
     parms->set_poly_modulus_degree(poly_modulus_degree);

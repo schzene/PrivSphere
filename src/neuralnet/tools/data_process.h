@@ -1,12 +1,12 @@
 #pragma once
-#ifndef PRIVSPHERE_PROTOCOLS_H__
-#define PRIVSPHERE_PROTOCOLS_H__
+#ifndef PRIVSPHERE_NETDATATOOL_H__
+#define PRIVSPHERE_NETDATATOOL_H__
 
 #include <cstdint>
 #include <vector>
 
 #include "config.h"
-#include "cryptools/he/nexus-op.h"
+#include "nexus-op.h"
 
 /**
  * @brief Convert input 'i' of type 's' to output 'o' of type 't'

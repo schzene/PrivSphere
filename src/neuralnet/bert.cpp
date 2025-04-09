@@ -1,15 +1,15 @@
 #include "bert.h"
 
 #include <cmath>
-#include <cstdint>
+#include <cstdint>`
 
 #include "layer.h"
 
 Attention::Attention(unsigned party, unsigned int n) {
     this->party = party;
-    this->n = n;
-    linear  = new Linear(party, nullptr, 0);
-    softmax = new SoftMax(party);
+    this->n     = n;
+    linear      = new Linear(party, nullptr, 0);
+    softmax     = new SoftMax(party);
 }
 
 Attention::~Attention() {
@@ -64,8 +64,8 @@ void Attention::forward(const vector<vector<vector<uint64_t>>>& input, vector<ve
 
 MultiHeadAttention::MultiHeadAttention(unsigned int party, unsigned int n) {
     this->party = party;
-    this->n = n;
-    attns   = new Attention*[N_HEADS];
+    this->n     = n;
+    attns       = new Attention*[N_HEADS];
     for (int i = 0; i < N_HEADS; i++) {
         attns[i] = new Attention(party, n);
     }
@@ -100,9 +100,9 @@ void MultiHeadAttention::forward(const vector<vector<vector<uint64_t>>>& input,
 
 FFN::FFN(unsigned int party, unsigned int n) {
     this->party = party;
-    this->n = n;
-    linear  = new Linear(party, nullptr, 0);
-    gelu    = new GeLU(party);
+    this->n     = n;
+    linear      = new Linear(party, nullptr, 0);
+    gelu        = new GeLU(party);
 }
 
 FFN::~FFN() {
@@ -137,11 +137,11 @@ void FFN::forward(const vector<vector<vector<uint64_t>>>& input, vector<vector<v
 
 Encoder::Encoder(unsigned int party, unsigned int n) {
     this->party = party;
-    this->n   = n;
-    attention = new MultiHeadAttention(party, n);
-    ln1       = new LayerNorm(party);
-    ffn       = new FFN(party, n);
-    ln2       = new LayerNorm(party);
+    this->n     = n;
+    attention   = new MultiHeadAttention(party, n);
+    ln1         = new LayerNorm(party);
+    ffn         = new FFN(party, n);
+    ln2         = new LayerNorm(party);
 }
 
 Encoder::~Encoder() {

@@ -1,6 +1,7 @@
 #include "simplenet.h"
+
 #include "config.h"
-#include "neuralnet/simplenet-config.h"
+// #include "neuralnet/simplenet-config.h"
 
 SimpleNetBlock::SimpleNetBlock(unsigned int _party, size_t num_feature, size_t comm_dim, size_t output_dim)
     : party(_party) {
@@ -20,6 +21,7 @@ void SimpleNetBlock::forward(const Data& input, Data& output) {
     Data i_temp, w_temp, o_temp;
     convert(party, MPCType::HE, linear, input, i_temp);
     convert(party, MPCType::HE, linear, w, w_temp);
+
     linear->fc(i_temp, w_temp, o_temp);
 
     Data g_temp;

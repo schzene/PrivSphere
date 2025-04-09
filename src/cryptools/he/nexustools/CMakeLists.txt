@@ -11,6 +11,7 @@ add_library(nexus-tools
     softmax.cpp
     matrix_mul.cpp
     argmax.cpp
+    sgn_function.cpp
     ${COMMON_SOURCE_FILES}
     ${BOOTSTRAPPING_SOURCE_FILES}
     ${SEAL_INCLUDES_DIR}
@@ -26,5 +27,5 @@ target_link_libraries(nexus-tools
     ntl gmp m pthread SEAL-bs::seal
 )
 
-add_executable(main main.cpp)
-target_link_libraries(main nexus-tools)
+add_executable(he_main main.cpp)
+target_link_libraries(he_main nexus-tools)

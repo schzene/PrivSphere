@@ -15,7 +15,7 @@
 
 const int dk = SEQ_LEN / N_HEADS;
 
-#include "../protocols/protocols.h"
+#include "data_process.h"
 using std::string;
 const string data_folder = "/data/";
 

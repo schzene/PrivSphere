@@ -1,1 +1,3 @@
 add_subdirectory(base_tools_test)
+
+add_subdirectory(network_test)

@@ -1,7 +1,7 @@
 add_subdirectory(costmodel)
 add_subdirectory(cryptools)
 add_subdirectory(neuralnet)
-add_subdirectory(protocols)
+
 
 
 
@@ -19,5 +19,4 @@ target_link_libraries(PrivaSphere
     INTERFACE
     PrivaSphere-cryptools
     PrivaSphere-nn
-    PrivaSphere-protocols
 )

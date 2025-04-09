@@ -1,3 +1,5 @@
+add_subdirectory(tools)
+
 add_library(PrivaSphere-nn
     simplenet.cpp
 )
@@ -9,5 +11,5 @@ ${CMAKE_CURRENT_SOURCE_DIR})
 
 target_link_libraries(PrivaSphere-nn
     PUBLIC
-    PrivaSphere-protocols
+    PrivaSphere-nn_tool
 )

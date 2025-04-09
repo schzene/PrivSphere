@@ -2,7 +2,7 @@
 #ifndef PRIVSPHERE_RESNET_CONFIG_H__
 #define PRIVSPHERE_RESNET_CONFIG_H__
 
-#include "../protocols/protocols.h"
+#include "data_process.h"
 typedef Cheetah_op Linear;
 typedef Cheetah_op Convolution;
 typedef Cheetah_op BatchNorm;
