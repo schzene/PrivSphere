@@ -23,7 +23,7 @@ void MM_test();
 void argmax_test();
 
 // Choose a test target here:
-int TEST_TARGET_IDX = 0;
+int TEST_TARGET_IDX = 4;
 
 vector<string> TEST_TARGETS = {"MatMul", "Argmax", "GELU", "LayerNorm", "SoftMax"};
 vector<int> COEFF_MODULI = {58, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 58};

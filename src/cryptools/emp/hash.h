@@ -30,6 +30,7 @@ Modified by Deevashwer Rathee
 
 #include "block.h"
 #include "constants.h"
+#include <openssl/evp.h>
 #include <openssl/sha.h>
 #include <stdio.h>
 
@@ -41,16 +42,20 @@ namespace nisl
   class Hash
   {
   public:
-    SHA256_CTX hash;
+    EVP_MD_CTX *hash;
     char buffer[HASH_BUFFER_SIZE];
     int size = 0;
     static const int DIGEST_SIZE = 32;
-    Hash() { SHA256_Init(&hash); }
-    ~Hash() {}
+    Hash() 
+    {
+      hash = EVP_MD_CTX_new();
+      EVP_DigestInit_ex(hash, EVP_sha256(), NULL);
+    }
+    ~Hash() { EVP_MD_CTX_free(hash); }
     void put(const void *data, int nbyte)
     {
       if (nbyte > HASH_BUFFER_SIZE)
-        SHA256_Update(&hash, data, nbyte);
+        EVP_DigestUpdate(hash, data, nbyte);
       else if (size + nbyte < HASH_BUFFER_SIZE)
       {
         memcpy(buffer + size, data, nbyte);
@@ -58,7 +63,7 @@ namespace nisl
       }
       else
       {
-        SHA256_Update(&hash, (char *)buffer, size);
+        EVP_DigestUpdate(hash, buffer, size);
         memcpy(buffer, data, nbyte);
         size = nbyte;
       }
@@ -71,14 +76,16 @@ namespace nisl
     {
       if (size > 0)
       {
-        SHA256_Update(&hash, (char *)buffer, size);
+        EVP_DigestUpdate(hash, (char *)buffer, size);
         size = 0;
       }
-      SHA256_Final((unsigned char *)a, &hash);
+      unsigned int len;
+      EVP_DigestFinal_ex(hash, (unsigned char *)a, &len);
     }
     void reset()
     {
-      SHA256_Init(&hash);
+      EVP_MD_CTX_free(hash);
+      hash = EVP_MD_CTX_new();
       size = 0;
     }
     static void hash_once(void *digest, const void *data, int nbyte)

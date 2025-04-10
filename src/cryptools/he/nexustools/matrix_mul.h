@@ -20,6 +20,11 @@ class MMEvaluator {
     this->ckks = &ckks;
   }
 
+/**
+  只能用于固定大小的矩阵乘法，
+  即（128×768）×（768×64）的矩阵乘法
+  👎🖕
+ */
   void matrix_mul(vector<vector<double>> &x, vector<vector<double>> &y, vector<Ciphertext> &res);
 
   std::vector<std::vector<double>> readMatrix(const std::string &filename, int rows, int cols);

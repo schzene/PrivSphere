@@ -172,6 +172,11 @@ void MMEvaluator::multiply_power_of_x(Ciphertext &encrypted, Ciphertext &destina
   ckks->evaluator->transform_to_ntt_inplace(destination);
 }
 
+/**
+  只能用于固定大小的矩阵乘法，
+  即（128×768）×（768×64）的矩阵乘法
+  👎🖕
+ */
 void MMEvaluator::matrix_mul(vector<vector<double>> &x, vector<vector<double>> &y, vector<Ciphertext> &res) {
   chrono::high_resolution_clock::time_point time_start, time_end;
 

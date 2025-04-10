@@ -33,9 +33,19 @@
 
 # Build folder
 build
+debug
 
 # cache folder
-*cache
+*cache*
 
 # vscode folder
 .vscode
+
+# data folder
+data
+
+.venv
+
+out
+temp
+*.pyc
