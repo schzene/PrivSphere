@@ -30,7 +30,7 @@ Modified by Deevashwer Rathee
 
 #include "utils/block.h"
 #include "utils/constants.h"
-#include <openssl/sha.h>
+#include <openssl/evp.h>
 #include <stdio.h>
 
 /** @addtogroup BP
@@ -39,41 +39,59 @@ Modified by Deevashwer Rathee
 namespace sci {
 class Hash {
 public:
-  SHA256_CTX hash;
+  EVP_MD_CTX *hash;
   char buffer[HASH_BUFFER_SIZE];
   int size = 0;
   static const int DIGEST_SIZE = 32;
-  Hash() { SHA256_Init(&hash); }
-  ~Hash() {}
+  Hash() {
+    hash = EVP_MD_CTX_new();
+    EVP_DigestInit_ex(hash, EVP_sha256(), nullptr);
+  }
+
+  ~Hash() {
+    EVP_MD_CTX_free(hash);
+  }
+
   void put(const void *data, int nbyte) {
     if (nbyte > HASH_BUFFER_SIZE)
-      SHA256_Update(&hash, data, nbyte);
+      EVP_DigestUpdate(hash, data, nbyte);
     else if (size + nbyte < HASH_BUFFER_SIZE) {
       memcpy(buffer + size, data, nbyte);
       size += nbyte;
     } else {
-      SHA256_Update(&hash, (char *)buffer, size);
+      EVP_DigestUpdate(hash, (char *)buffer, size);
       memcpy(buffer, data, nbyte);
       size = nbyte;
     }
   }
+
   void put_block(const block128 *block128, int nblock = 1) {
     put(block128, sizeof(block128) * nblock);
   }
+
   void digest(char *a) {
     if (size > 0) {
-      SHA256_Update(&hash, (char *)buffer, size);
+      EVP_DigestUpdate(hash, (char *)buffer, size);
       size = 0;
     }
-    SHA256_Final((unsigned char *)a, &hash);
+    unsigned int digest_len = 0;
+    EVP_DigestFinal_ex(hash, (unsigned char *)a, &digest_len);
   }
+
   void reset() {
-    SHA256_Init(&hash);
+    EVP_DigestInit_ex(hash, EVP_sha256(), nullptr);
     size = 0;
   }
+
   static void hash_once(void *digest, const void *data, int nbyte) {
-    (void)SHA256((const unsigned char *)data, nbyte, (unsigned char *)digest);
+    EVP_MD_CTX *ctx = EVP_MD_CTX_new();
+    EVP_DigestInit_ex(ctx, EVP_sha256(), nullptr);
+    EVP_DigestUpdate(ctx, data, nbyte);
+    unsigned int digest_len = 0;
+    EVP_DigestFinal_ex(ctx, (unsigned char *)digest, &digest_len);
+    EVP_MD_CTX_free(ctx);
   }
+  
   __attribute__((target("sse2"))) static block128
   hash_for_block128(const void *data, int nbyte) {
     // even though stack is aligned to 16 byte, we don't know the order of

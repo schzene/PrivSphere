@@ -24,11 +24,11 @@ SOFTWARE.
 
 #include "Math/math-functions.h"
 
-#define I 0
-#define J 1
+#define _I 0
+#define _J 1
 #define print_bool(vec)                                                        \
   {                                                                            \
-    auto tmp_pub = bool_op->output(PUBLIC, vec).subset(I, I + J);              \
+    auto tmp_pub = bool_op->output(PUBLIC, vec).subset(_I, _I + _J);           \
     cout << #vec << "_pub: " << tmp_pub << endl;                               \
   }
 

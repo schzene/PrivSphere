@@ -4,3 +4,7 @@ macro (add_test name)
     add_executable(${name} "${name}.cpp")
     target_link_libraries(${name} PrivaSphere)
 endmacro()
+
+add_test(conv)
+add_test(he_op)
+add_test(ss_op)

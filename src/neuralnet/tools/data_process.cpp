@@ -1,4 +1,5 @@
 #include "data_process.h"
+#include "utils/constants.h"
 
 void convert(unsigned party, const MPCType s, const MPCType t, const Data& i, Data& o) {
     o = Data();
@@ -56,11 +57,13 @@ void load_data(vector<vector<uint64_t>>& B, size_t dim1, size_t dim2) {
     B = vector<vector<uint64_t>>(dim1, vector<uint64_t>(dim2, 1));
 }
 
-Ciphertext SS2HE(FixArray ss_data, NetIO* io, Encryptor* encryptor, CKKSEncoder* encoder,
+Ciphertext SS2HE(FixArray& ss_data, NetIO* io, Encryptor* encryptor, CKKSEncoder* encoder,
                  Evaluator* evaluator, SEALContext* context, double scale) {
     assert(encoder != nullptr);
     Ciphertext ct;
     Plaintext pt;
+    int party = ss_data.party;
+    ss_data.party = sci::PUBLIC;
     vector<double> data = ss_data.get_native_type<double>();
     encoder->encode(data, scale, pt);
     if (encryptor != nullptr) {
@@ -74,6 +77,7 @@ Ciphertext SS2HE(FixArray ss_data, NetIO* io, Encryptor* encryptor, CKKSEncoder*
         recv_ct(io, &ct, context);
         evaluator->add_plain_inplace(ct, pt);
     }
+    ss_data.party = party;
     return ct;
 }
 

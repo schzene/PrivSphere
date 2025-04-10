@@ -14,9 +14,6 @@ const static int FILE_BUFFER_SIZE = 1024 * 16;
 const static int CHECK_BUFFER_SIZE = 1024 * 8;
 
 const static int XOR = -1;
-const static int PUBLIC = 0;
-const static int ALICE = 1;
-const static int BOB = 2;
 const static uint8_t ELL = 31;
 const static uint8_t SCALE = 13;
 

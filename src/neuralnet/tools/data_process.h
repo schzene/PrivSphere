@@ -63,7 +63,7 @@ inline void convert(unsigned party, const OP* s, const MPCType t, const Data& i,
 void load_data(vector<vector<vector<uint64_t>>>& A, size_t dim1, size_t dim2, size_t dim3);
 void load_data(vector<vector<uint64_t>>& B, size_t dim1, size_t dim2);
 
-Ciphertext SS2HE(FixArray ss_data, NetIO* io, Encryptor* encryptor, CKKSEncoder* encoder,
+Ciphertext SS2HE(FixArray& ss_data, NetIO* io, Encryptor* encryptor, CKKSEncoder* encoder,
                  Evaluator* evaluator, SEALContext* context, double scale);
 FixArray HE2SS(int party, Ciphertext& ct, NetIO* io, Decryptor* decryptor, CKKSEncoder* encoder,
                Evaluator* evaluator, SEALContext* context, double scale);
