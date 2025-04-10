@@ -1,11 +1,10 @@
 include_directories(${PROJECT_SOURCE_DIR}/src)
 
-add_executable(fix_comm "fixed_comm_test.cpp")
-target_link_libraries(fix_comm PrivaSphere)
+macro (add_test name)
+    add_executable(${name} "${name}.cpp")
+    target_link_libraries(${name} PrivaSphere)
+endmacro()
 
-add_executable(field_data "field_data_test.cpp")
-target_link_libraries(field_data PrivaSphere)
-
-
-add_executable(fix_nexus "fixed_nexus_test.cpp")
-target_link_libraries(fix_nexus PrivaSphere)
+add_test(fixed_data)
+add_test(fixed_comm)
+add_test(fixed_nexus)

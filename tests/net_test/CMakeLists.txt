@@ -1,5 +1,9 @@
-add_executable(simplenet "simplenet_test.cpp")
-target_link_libraries(simplenet PrivaSphere)
+include_directories(${PROJECT_SOURCE_DIR}/src)
 
-add_executable(logistic "logistic_test.cpp")
-target_link_libraries(logistic PrivaSphere)
+macro (add_test name)
+    add_executable(${name} "${name}.cpp")
+    target_link_libraries(${name} PrivaSphere)
+endmacro()
+
+add_test(logistic)
+add_test(simplenet)
